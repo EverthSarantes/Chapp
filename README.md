@@ -1,0 +1,1 @@
+Un pequeño sistema de estadisticas para generar consultas sql de forma visual
