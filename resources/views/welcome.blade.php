@@ -120,11 +120,16 @@
         </form>
     </section>
     <section class="container mt-4">
-        <h2 class="mt-1">Resultados</h2>
+        <div class="d-flex align-items-center justify-content-between">
+            <h5>Resultados</h5><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_config_grafic">Cargar Gráfico</button>
+        </div>
         <div id="results-container" class="row mt-2">
             <div class="col-md-12">
                 <table class="table table-bordered table-striped">
                     <thead>
+                        <tr id="table-head-buttons">
+
+                        </tr>
                         <tr id="table-head">
                             
                         </tr>
@@ -134,7 +139,121 @@
                 </table>
             </div>
         </div>
+    </section>
+
+    <!-- Modal guardar datos -->
+    <div class="modal fade" id="modal_save_data" tabindex="-1" aria-labelledby="modal_save_dataLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modal_save_dataLabel">Guardar Datos</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="max-height: 60vh; overflow: scroll;">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="data-type-selector" class="form-label">Guardar columna <strong id="label-data-name"></strong> como:</label>
+                            <select class="form-select" id="data-type-selector" name="data_type" autocomplete="off">
+                                <option value="labels">Etiquetas</option>
+                                <option value="values">Valores</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3"></div>
+                        <div class="col-md-12">
+                            <h5>Valores Actuales</h5>
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Etiqueta</th>
+                                        <th>Valor</th> 
+                                    </tr>
+                                </thead>
+                                <tbody id="modal-table-body">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" id="btn-save-data">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal cargar grafico-->
+    <div class="modal fade" id="modal_load_grafic" tabindex="-1" aria-labelledby="modal_load_graficModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="modal_load_graficModalLabel"></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <canvas id="chart"></canvas>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary" id="btn-download-canvas">Guardar Gráfico</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Modal configurar grafico-->
+    <div class="modal fade" id="modal_config_grafic" tabindex="-1" aria-labelledby="modal_config_graficModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="modal_config_graficModalLabel">Configurar Gráfico</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="chart-type-selector" class="form-label">Tipo de Gráfico</label>
+                            <select class="form-select" id="chart-type-selector" name="chart_type">
+                                <option value="bar">Barra</option>
+                                <option value="line">Linea</option>
+                                <option value="pie">Pastel</option>
+                                <option value="doughnut">Dona</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="chart-title" class="form-label">Titulo</label>
+                            <input type="text" class="form-control" id="chart-title" name="chart_title">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="chart-background-color" class="form-label">Color de Fondo</label>
+                            <input type="color" class="form-control" id="chart-background-color" name="chart_background_color">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="chart-elements-color" class="form-label">Color de los Elementos</label>
+                            <input type="color" class="form-control" id="chart-elements-color" name="chart_elements_color">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="chart-border-color" class="form-label">Color del Borde de los Elementos</label>
+                            <input type="color" class="form-control" id="chart-border-color" name="chart_border_color">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="chart-font-color" class="form-label">Color de la fuente</label>
+                            <input type="color" class="form-control" id="chart-font-color" name="chart_font_color">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" id="load-chart-button">Cargar Gráfico</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  
 </body>
-<script src="../js/request.js"></script>
-<script src="../js/estadisticas/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/request.js"></script>
+    <script src="../js/estadisticas/data.js"></script>
+    <script src="../js/estadisticas/index.js"></script>
 </html>

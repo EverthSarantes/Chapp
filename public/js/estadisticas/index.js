@@ -12,6 +12,7 @@ const operator_column_selector = document.getElementById('operation-column-selec
 const operator_selector = document.getElementById('operation-selector');
 
 const table_head = document.getElementById('table-head');
+const table_head_buttons = document.getElementById('table-head-buttons');
 const table_body = document.getElementById('table-body');
 
 function setConditionsContainer(){
@@ -155,6 +156,11 @@ function showData(data){
         let info = Object.values(results);
         table_head.innerHTML = '';
         table_body.innerHTML = '';
+        table_head_buttons.innerHTML = '';
+
+        let th2 = document.createElement('th');
+        th2.innerHTML = 'Operaciones';
+        table_head_buttons.appendChild(th2);
 
         let th1 = document.createElement('th');
         th1.innerHTML = '#';
@@ -164,6 +170,16 @@ function showData(data){
             let th = document.createElement('th');
             th.innerHTML = column;
             table_head.appendChild(th);
+
+            let th_button = document.createElement('th');
+            let button = document.createElement('button');
+            button.type = 'button';
+            button.setAttribute('data-column', column);
+            button.setAttribute('class', 'btn btn-primary btn-save-data');
+            button.setAttribute('onclick', 'loadModalSaveDatos("'+column+'")');
+            button.innerHTML = 'Guardar';
+            th_button.appendChild(button);
+            table_head_buttons.appendChild(th_button);
         });
         let count = 0;
         info.forEach(row => {
@@ -175,6 +191,7 @@ function showData(data){
 
             columns.forEach(column => {
                 let td = document.createElement('td');
+                td.setAttribute('data-column', column);
                 td.innerHTML = row[column];
                 tr.appendChild(td);
             });
@@ -183,6 +200,7 @@ function showData(data){
     }
     catch(error){
         errorShowData('No se encontraron resultados');
+        console.error(error);
     }
 }
 submit_button.addEventListener('click', search);
