@@ -158,14 +158,18 @@
                                 <option value="values">Valores</option>
                             </select>
                         </div>
-                        <div class="col-md-6 mb-3"></div>
+                        <div class="col-md-6 mb-3 d-none" id="div-data-name">
+                            <label for="data-name" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="data-name" name="data_name">
+                        </div>
                         <div class="col-md-12">
                             <h5>Valores Actuales</h5>
                             <table class="table table-bordered table-striped">
                                 <thead>
-                                    <tr>
-                                        <th>Etiqueta</th>
-                                        <th>Valor</th> 
+                                    <tr id="tr-labels">
+                                        <th>
+                                            <button type="button" class="btn btn-danger" id="btn-resset-label">X</button>
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody id="modal-table-body">
