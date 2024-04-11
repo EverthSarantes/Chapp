@@ -50,9 +50,10 @@ function loadChart(){
     let type = document.getElementById('chart-type-selector').value;
     title = document.getElementById('chart-title').value;
     let background_color = document.getElementById('chart-background-color').value;
-    let elements_color = document.getElementById('chart-elements-color').value;
     let border_color = document.getElementById('chart-border-color').value;
     let font_color = document.getElementById('chart-font-color').value;
+    const elements_color_inputs = document.getElementsByName('color[]');
+    const elements_color = Array.from(elements_color_inputs).map(input => input.value);
 
     document.getElementById('modal_load_graficModalLabel').innerHTML = title || 'Grafico';
     if(chart){
@@ -80,7 +81,7 @@ function loadChart(){
                 label: data.name || `Grafico ${index + 1}`,
                 data: data.data,
                 borderWidth: 1,
-                backgroundColor: elements_color || 'rgba(54, 162, 235, 0.2)',
+                backgroundColor: elements_color[index] || 'rgba(54, 162, 235, 0.2)',
                 borderColor: border_color || 'rgba(54, 162, 235, 1)',
                 borderWidth: 2
             }))
@@ -217,3 +218,35 @@ function downloadCanvasAsImage(canvas_id) {
 document.getElementById('btn-download-canvas').addEventListener('click', () => {
     downloadCanvasAsImage('chart');
 });
+
+function getRandomColor(){
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+function loadModalConfig(){
+    let div_colors = document.getElementById('div-config-data');
+    div_colors.innerHTML = '';
+    dataset.data.forEach(data => {
+        let div = document.createElement('div');
+        div.setAttribute('class', 'col-md-6 mb-3');
+        let label = document.createElement('label');
+        label.innerHTML = 'Color del elemento '+data.name;
+        label.setAttribute('class', 'form-label');
+        let input = document.createElement('input');
+        input.type = 'color';
+        input.setAttribute('class', 'form-control');
+        input.name = 'color[]';
+        input.value = getRandomColor();
+        
+        div.appendChild(label);
+        div.appendChild(input);
+        div_colors.appendChild(div);
+    });
+    modal_config.show();
+}
+document.getElementById('btn-load-chart').addEventListener('click', loadModalConfig);

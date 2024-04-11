@@ -121,7 +121,7 @@
     </section>
     <section class="container mt-4">
         <div class="d-flex align-items-center justify-content-between">
-            <h5>Resultados</h5><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_config_grafic">Cargar Gráfico</button>
+            <h5>Resultados</h5><button type="button" class="btn btn-primary" id="btn-load-chart">Cargar Gráfico</button>
         </div>
         <div id="results-container" class="row mt-2">
             <div class="col-md-12">
@@ -232,10 +232,7 @@
                             <label for="chart-background-color" class="form-label">Color de Fondo</label>
                             <input type="color" class="form-control" id="chart-background-color" name="chart_background_color">
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="chart-elements-color" class="form-label">Color de los Elementos</label>
-                            <input type="color" class="form-control" id="chart-elements-color" name="chart_elements_color">
-                        </div>
+
                         <div class="col-md-6 mb-3">
                             <label for="chart-border-color" class="form-label">Color del Borde de los Elementos</label>
                             <input type="color" class="form-control" id="chart-border-color" name="chart_border_color">
@@ -243,6 +240,9 @@
                         <div class="col-md-6 mb-3">
                             <label for="chart-font-color" class="form-label">Color de la fuente</label>
                             <input type="color" class="form-control" id="chart-font-color" name="chart_font_color">
+                        </div>
+                        <div id="div-config-data" class="row">
+
                         </div>
                     </div>
                 </div>
