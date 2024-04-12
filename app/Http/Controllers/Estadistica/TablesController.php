@@ -41,4 +41,21 @@ class TablesController extends Controller
             'data' => $fields
         ], 200);
     }
+
+    public function getRelations($table)
+    {
+        $relations = (new Tables())->getTableRelations($table);
+        
+        if(count($relations) == 0) {
+            return response()->json([
+                'message' => 'No se encontraron relaciones',
+                'data' => []
+            ], 404);
+        }
+
+        return response()->json([
+            'message' => 'Relaciones encontradas',
+            'data' => $relations
+        ], 200);
+    }
 }

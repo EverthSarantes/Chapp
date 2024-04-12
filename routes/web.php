@@ -11,6 +11,7 @@ Route::get('/', function () {
 Route::prefix('tables')->group(function(){
     Route::get('names', [TablesController::class, 'getNames'])->name('tables.names');
     Route::get('fields/{table}', [TablesController::class, 'getFields'])->name('tables.fields');
+    Route::get('relations/{table}', [TablesController::class, 'getRelations'])->name('tables.relations');
 });
 
 Route::prefix('search')->group(function(){

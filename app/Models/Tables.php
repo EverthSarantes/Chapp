@@ -55,4 +55,30 @@ class Tables
 
         return $fields;
     }
+
+    public function getTableRelations($table_name)
+    {
+        // Obtener las relaciones de clave externa donde la tabla especificada es la tabla padre
+        $tablas_padre = DB::select("
+            SELECT * from pragma_foreign_key_list('$table_name');
+        ");
+
+        // Obtener las relaciones de clave externa donde la tabla especificada es la tabla hija
+        $tablas_hija = DB::select("
+            SELECT name
+            FROM sqlite_master
+            WHERE type='table'
+            AND name != '$table_name'
+            AND name IN (
+                SELECT tbl_name
+                FROM sqlite_master
+                WHERE type='table' AND sql LIKE '%$table_name%'
+            )
+        ");
+        
+        return [
+            'tablas_padre' => array_column($tablas_padre, 'table'),
+            'tablas_hija' => array_column($tablas_hija, 'name')
+        ];
+    }
 }
