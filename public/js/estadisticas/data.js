@@ -3,6 +3,7 @@ const load_chart_button = document.getElementById('load-chart-button');
 let modal = new bootstrap.Modal(document.getElementById('modal_save_data'));
 let modal_chart = new bootstrap.Modal(document.getElementById('modal_load_grafic'));
 let modal_config = new bootstrap.Modal(document.getElementById('modal_config_grafic'));
+let modal_info = new bootstrap.Modal(document.getElementById('modal_info'));
 let title = '';
 
 let dataset = {
@@ -250,3 +251,52 @@ function loadModalConfig(){
     modal_config.show();
 }
 document.getElementById('btn-load-chart').addEventListener('click', loadModalConfig);
+
+function loadTableInfoLabels(){
+    let table_labels = document.getElementById('table-info-labels');
+    table_labels.innerHTML = '';
+    let td1 = document.createElement('td');
+    td1.classList.add('table-info-cel');
+    td1.innerHTML = 'Nombres';
+    table_labels.appendChild(td1);
+    dataset.labels.forEach(label => {
+        let td = document.createElement('td');
+        td.classList.add('table-info-cel');
+        let input = document.createElement('input');
+        input.value = label;
+        input.classList.add('table-info-input');
+        td.appendChild(input);
+        table_labels.appendChild(td);
+    });
+}
+
+function loadTableInfoData(){
+    let table_body = document.getElementById('table-info-body');
+    table_body.innerHTML = '';
+    dataset.data.forEach(data => {
+        let tr = document.createElement('tr');
+        let td1 = document.createElement('td');
+        td1.innerHTML = data.name;
+        td1.classList.add('table-info-cel');
+        tr.appendChild(td1);
+        data.data.forEach(value => {
+            let td = document.createElement('td');
+            td.classList.add('table-info-cel');
+            let input = document.createElement('input');
+            input.value = value;
+            input.classList.add('table-info-input');
+            td.appendChild(input);
+            tr.appendChild(td);
+        });
+        table_body.appendChild(tr);
+    });
+}
+
+function loadModalInfo(){
+    loadTableInfoLabels();
+    loadTableInfoData();
+
+    modal_info.show();
+}
+
+document.getElementById('btn-show-info').addEventListener('click', loadModalInfo);

@@ -1,0 +1,15 @@
+.table-info-row{
+    width: 250px;
+}
+
+.table-info-cel{
+    width: 250px;
+    height: 50px;
+    padding: 0 !important;
+}
+
+.table-info-input{
+    width: 250px;
+    height: 50px;
+    border: none;
+}

@@ -10,6 +10,7 @@ class SearchController extends Controller
 {
     public function search(Request $request)
     {
+        //dd($request->except('_token', 'table', 'fiels_amount', 'order', 'order_column', 'conditions', 'condition_column', 'condition_operator', 'condition_value', 'operation', 'operation_column', 'relationships'));
         $request->validate([
             'conditions' => 'required',
             'table' => 'required',
@@ -34,7 +35,7 @@ class SearchController extends Controller
             $query->orderByDesc($request->order_column);   
         }
 
-        $columns = $request->except('_token', 'table', 'fiels_amount', 'order', 'order_column', 'conditions', 'condition_column', 'condition_operator', 'condition_value', 'operation', 'operation_column');
+        $columns = $request->except('_token', 'table', 'fiels_amount', 'order', 'order_column', 'conditions', 'condition_column', 'condition_operator', 'condition_value', 'operation', 'operation_column', 'relationships', 'relationship_table[]');
         if(count($columns) > 0)
         {
             $query->select(array_values($columns));
@@ -90,7 +91,7 @@ class SearchController extends Controller
                 $result = collect([['Resultado' => $sql]]);
                 break;
         }
-        
+
         if($result->isEmpty()){
             return response()->json([
                 'message' => 'No se encontraron registros',
