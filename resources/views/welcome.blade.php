@@ -307,11 +307,65 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="btn-import-data" data-bs-toggle="modal" data-bs-target="#modal_import_data">Importar Datos</button>
+                    <button type="button" class="btn btn-primary" id="btn-export-data" data-bs-toggle="modal" data-bs-target="#modal_export_data">Exportar Datos</button>
                     <button type="button" class="btn btn-secondary" id="btn-close-modal-info">Cerrar</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Modal importar datos -->
+    <div class="modal fade" id="modal_import_data" tabindex="-1" aria-labelledby="modal_import_dataLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modal_import_dataLabel">Importar Datos</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="import-data" class="form-label">Datos</label>
+                            <input type="file" class="form-control" id="import-data" name="import_data" accept=".json, .csv">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" id="btn-save-import-data">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal exportar datos -->
+    <div class="modal fade" id="modal_export_data" tabindex="-1" aria-labelledby="modal_export_dataLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modal_export_dataLabel">Exportar Datos</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="export-data" class="form-label">Datos</label>
+                            <select class="form-select" id="export-data-type" name="export_data_type">
+                                <option value="csv">CSV</option>
+                                <option value="json">JSON</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" id="btn-download-export-data">Descargar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../js/request.js"></script>

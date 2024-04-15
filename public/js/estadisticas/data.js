@@ -388,3 +388,88 @@ function closeModalInfo(){
 }
 
 document.getElementById('btn-close-modal-info').addEventListener('click', closeModalInfo);
+
+function exportDataToJson(){
+    let data_str = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(dataset));
+    let link = document.createElement('a');
+    link.setAttribute('href', data_str);
+    link.setAttribute('download', 'data.json');
+    link.click();
+    link.remove();
+}
+
+function exportDataToCsv(){
+    let data_str = 'data:text/csv;charset=utf-8,';
+    let labels = dataset.labels;
+    let data = dataset.data;
+    let csv = labels.join(',')+'\n';
+    data.forEach(data => {
+        csv += data.data.join(',')+'\n';
+    });
+    data_str += encodeURIComponent(csv);
+    let link = document.createElement('a');
+    link.setAttribute('href', data_str);
+    link.setAttribute('download', 'data.csv');
+    link.click();
+    link.remove();
+}
+
+function exportData(){
+    let selector = document.getElementById('export-data-type').value;
+    if(selector == 'json'){
+        exportDataToJson();
+    }
+    else if(selector == 'csv'){
+        exportDataToCsv();
+    }
+}
+document.getElementById('btn-download-export-data').addEventListener('click', exportData);
+
+function inmportDataFromJson(){
+    let input = document.getElementById('import-data');
+    let file = input.files[0];
+    let reader = new FileReader();
+    reader.readAsText(file);
+    reader.onload = function(e){
+        let data = e.target.result;
+        let jsonData = JSON.parse(data);
+        dataset.labels = jsonData.labels;
+        dataset.data = jsonData.data;
+    };
+    
+}
+
+function importDataFromCsv(){
+    let input = document.getElementById('import-data');
+    let file = input.files[0];
+    let reader = new FileReader();
+    reader.readAsText(file);
+    reader.onload = function(e){
+        let data = e.target.result;
+        let rows = data.split('\n');
+        let labels = rows[0].split(',');
+        let data_values = [];
+        for (let i = 1; i < rows.length-1; i++){
+            data_values.push(rows[i].split(','));
+        }
+        dataset.labels = labels;
+        dataset.data = data_values.map(data => ({
+            name: 'Data',
+            data: data
+        }));
+        console.log(dataset);
+    };
+}
+
+function importData(){
+    let file = document.getElementById('import-data').files[0];
+    let type = file.type;
+    if(type == 'application/json'){
+        inmportDataFromJson();
+    }
+    else if(type == 'text/csv'){
+        importDataFromCsv();
+    }
+}
+
+document.getElementById('btn-save-import-data').addEventListener('click', importData);
