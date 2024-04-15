@@ -252,6 +252,58 @@ function loadModalConfig(){
 }
 document.getElementById('btn-load-chart').addEventListener('click', loadModalConfig);
 
+function addColumn(){
+    let table = document.getElementById('info-table');
+    let tr = document.getElementById('table-info-labels');
+    let td = document.createElement('td');
+    td.classList.add('table-info-cel');
+    let input = document.createElement('input');
+    input.classList.add('table-info-input');
+    input.classList.add('input-label'+'-'+table.rows[0].cells.length);
+    input.value = 'Columna '+table.rows[0].cells.length;
+    td.appendChild(input);
+    tr.appendChild(td);
+
+    for (let i = 1; i < table.rows.length; i++){
+        let td = document.createElement('td');
+        td.classList.add('table-info-cel');
+        let input = document.createElement('input');
+        input.classList.add('table-info-input');
+        input.classList.add('input-data-'+i);
+        td.appendChild(input);
+        table.rows[i].appendChild(td);
+    }
+}
+
+document.getElementById('btn-add-column').addEventListener('click', addColumn);
+
+function addRow(){
+    let table = document.getElementById('info-table');
+    let tbody = document.getElementById('table-info-body');
+    let tr = document.createElement('tr');
+    let td = document.createElement('td');
+    td.classList.add('table-info-cel');
+    let input = document.createElement('input');
+    input.classList.add('table-info-input');
+    input.classList.add('input-name-'+table.rows.length);
+    input.value = 'Fila '+table.rows.length;
+    td.appendChild(input);
+    tr.appendChild(td);
+    tbody.appendChild(tr);
+
+    for (let i = 1; i < table.rows[0].cells.length; i++){
+        let td = document.createElement('td');
+        td.classList.add('table-info-cel');
+        let input = document.createElement('input');
+        input.classList.add('table-info-input');
+        input.classList.add('input-data-'+(table.rows.length-1));
+        td.appendChild(input);
+        tr.appendChild(td);
+    }
+}
+
+document.getElementById('btn-add-row').addEventListener('click', addRow);
+
 function loadTableInfoLabels(){
     let table_labels = document.getElementById('table-info-labels');
     table_labels.innerHTML = '';
@@ -265,6 +317,7 @@ function loadTableInfoLabels(){
         let input = document.createElement('input');
         input.value = label;
         input.classList.add('table-info-input');
+        input.classList.add('input-label'+'-'+(table_labels.cells.length));
         td.appendChild(input);
         table_labels.appendChild(td);
     });
@@ -276,7 +329,11 @@ function loadTableInfoData(){
     dataset.data.forEach(data => {
         let tr = document.createElement('tr');
         let td1 = document.createElement('td');
-        td1.innerHTML = data.name;
+        let input1 = document.createElement('input');
+        input1.value = data.name;
+        input1.classList.add('table-info-input');
+        input1.classList.add('input-name-'+(table_body.rows.length+1));
+        td1.appendChild(input1);
         td1.classList.add('table-info-cel');
         tr.appendChild(td1);
         data.data.forEach(value => {
@@ -285,6 +342,7 @@ function loadTableInfoData(){
             let input = document.createElement('input');
             input.value = value;
             input.classList.add('table-info-input');
+            input.classList.add('input-data-'+(table_body.rows.length+1));
             td.appendChild(input);
             tr.appendChild(td);
         });
@@ -300,3 +358,33 @@ function loadModalInfo(){
 }
 
 document.getElementById('btn-show-info').addEventListener('click', loadModalInfo);
+
+function saveTableInfo(){
+    let table_labels = document.getElementById('table-info-labels');
+    let table_body = document.getElementById('table-info-body');
+
+    resetLabels();
+    resetData();
+
+    let labels_data = [];
+    for (let i = 1; i < table_labels.cells.length; i++){
+        labels_data.push(document.querySelector('.input-label-'+i).value);
+    }
+    setLabels(labels_data);
+
+    for (let i = 0; i < table_body.rows.length; i++){
+        let data = [];
+        let name = document.querySelector('.input-name-'+(i+1)).value;
+        for (let j = 1; j < table_body.rows[i].cells.length; j++){
+            data.push(document.querySelectorAll('.input-data-'+(i+1))[j-1].value);
+        }
+        setData(data, name);
+    }
+}
+
+function closeModalInfo(){
+    saveTableInfo();
+    modal_info.hide();
+}
+
+document.getElementById('btn-close-modal-info').addEventListener('click', closeModalInfo);

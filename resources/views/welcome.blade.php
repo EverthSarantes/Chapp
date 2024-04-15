@@ -282,13 +282,20 @@
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="modal_infoLabel">Información</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="d-flex justify-content-around w-100">
+                        <div class="w-50">
+                            <h1 class="modal-title fs-5" id="modal_infoLabel">Información</h1>
+                        </div>
+                        <div class="d-flex justify-content-around w-50">
+                            <button type="button" class="btn btn-primary" id="btn-add-column">Añadir Columna</button>
+                            <button type="button" class="btn btn-primary" id="btn-add-row">Añadir Fila</button>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <table class="table table-bordered table-striped">
+                            <table class="table table-bordered table-striped" id="info-table">
                                 <thead>
                                     <tr id="table-info-labels" class="table-info-row">
                                     </tr>
@@ -300,7 +307,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-secondary" id="btn-close-modal-info">Cerrar</button>
                 </div>
             </div>
         </div>
