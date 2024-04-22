@@ -1,0 +1,26 @@
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.table {
+    border-collapse: collapse;
+    width: 100%;
+}
+  
+.table td, .table th {
+    border: 1px solid var(--blanco);
+    padding: 8px;
+}
+  
+.table tr:nth-child(even){
+    background-color: var(--blanco);
+}
+  
+.table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: var(--verde);
+    color: var(--blanco);
+}

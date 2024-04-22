@@ -5,7 +5,11 @@ use App\Http\Controllers\Estadistica\TablesController;
 use App\Http\Controllers\Estadistica\SearchController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
+});
+
+Route::get('estadisticas', function () {
+    return view('estadisticas');
 });
 
 Route::prefix('tables')->group(function(){
@@ -16,4 +20,8 @@ Route::prefix('tables')->group(function(){
 
 Route::prefix('search')->group(function(){
     Route::post('', [SearchController::class, 'search'])->name('search');
+});
+
+Route::prefix('auth')->group(function(){
+    
 });

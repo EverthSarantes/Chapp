@@ -1,0 +1,28 @@
+.grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-4{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.grid-center{
+    justify-items: center;
+    align-items: center;
+}
+
+.doble-colum{
+    grid-column: span 2;
+}
+
+@media (max-width: 668px){
+    .grid{
+        grid-template-columns: 1fr;
+    }
+
+    .doble-colum{
+        grid-column: span 1;
+    }
+}
