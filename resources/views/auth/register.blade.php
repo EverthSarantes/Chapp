@@ -2,15 +2,15 @@
 @section('head')
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/form.css">
-    <title>{{env('APP_NAME')}} | Iniciar Sesión</title>
+    <title>{{env('APP_NAME')}} | Registro</title>
 @endsection
 @section('content')
     <main class="flex-center flex-column">
         <div class="logo-container">
             <img src="/img/logofooter 1.png" alt="logo chapp">
-            <h2 class="logo-text">Iniciar Sesión</h2>
+            <h2 class="logo-text">Registro</h2>
         </div>
-        <form action="{{route('auth.login')}}" method="post" class="form login-form">
+        <form action="{{route('auth.store')}}" method="POST" class="form login-form">
             @csrf
             <label class="input-group" for="name">
                 <span class="input-text">Usuario</span>
@@ -20,11 +20,8 @@
                 <span class="input-text">Contraseña</span>
                 <input class="input" type="password" name="password" id="password" required>
             </label>
-            <div class="input-group">
-                <a href="{{route('auth.register')}}" class="link">¿No tienes cuenta? Regístrate</a>
-            </div>
             <div class="button-group flex-column">
-                <button class="btn verde">Entrar</button>
+                <button class="btn verde">Crear Usuario</button>
             </div>
         </form>
     </main>

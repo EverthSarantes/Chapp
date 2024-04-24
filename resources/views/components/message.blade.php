@@ -1,5 +1,5 @@
 <div class="{{ $color }}" id="message">
-    <p>{{ $mensage }}</p>
+    <p>{{ $message }}</p>
     <script>
         setTimeout(() => {
             document.getElementById('message').remove();

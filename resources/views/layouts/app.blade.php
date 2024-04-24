@@ -8,7 +8,7 @@
 </head>
 <body>
     @if ($errors->any())
-        <div class="rojo">
+        <div class="rojo" onclick="this.remove()">
             <p onclick="this.parentNode.remove()">Ha ocurrido un error, por favor intentelo de nuevo</p>
         </div>
     @endif
@@ -17,4 +17,5 @@
     @endif
     @yield('content')
 </body>
+@yield('scripts')
 </html>
