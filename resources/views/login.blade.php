@@ -20,6 +20,9 @@
                 <span class="input-text">Contraseña</span>
                 <input class="input" type="password" name="password" id="password" required>
             </label>
+            <div class="input-group">
+                <a href="/register" class="link">¿No tienes cuenta? Regístrate</a>
+            </div>
             <div class="button-group flex-column">
                 <button class="btn verde">Entrar</button>
             </div>
