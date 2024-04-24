@@ -8,12 +8,15 @@ use Illuminate\View\Component;
 
 class message extends Component
 {
+    public $message;
+    public $color;
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct($message, $color = 'verde')
     {
-        //
+        $this->message = $message;
+        $this->color = $color;
     }
 
     /**
