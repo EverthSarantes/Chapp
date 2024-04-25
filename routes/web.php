@@ -8,7 +8,7 @@ use App\Http\Controllers\Auth\AuthController;
 Route::get('/', function () {
     if(auth()->check())
     {
-        return redirect()->route('estadisticas');
+        return redirect()->route('panel');
     }
 
     return view('login');
@@ -36,4 +36,10 @@ Route::prefix('auth')->group(function(){
 
     Route::post('login', [AuthController::class, 'login'])->name('auth.login');
     Route::post('logout', [AuthController::class, 'logout'])->name('auth.logout');
+});
+
+//rutas de la aplicación
+Route::middleware('auth')->group(function(){
+    //rutas del panel
+    Route::get('home', function(){return view('panel');})->name('panel');
 });

@@ -67,8 +67,11 @@ body{
 }
 
 .flex-center{
-    display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+.aling-items-center{
     align-items: center;
 }
 

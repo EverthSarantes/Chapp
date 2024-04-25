@@ -57,7 +57,7 @@ class AuthController extends Controller
         {
             $request->session()->regenerate();
             
-            return redirect()->route('estadisticas');
+            return redirect()->route('panel');
         }
 
         return redirect()->back()->with([
