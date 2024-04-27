@@ -13,7 +13,7 @@
     align-items: center;
 }
 
-.doble-colum{
+.doble-column{
     grid-column: span 2;
 }
 
@@ -22,7 +22,7 @@
         grid-template-columns: 1fr;
     }
 
-    .doble-colum{
+    .doble-column{
         grid-column: span 1;
     }
 }

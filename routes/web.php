@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Estadistica\TablesController;
 use App\Http\Controllers\Estadistica\SearchController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Usuario\PerfilController;
 
 Route::get('/', function () {
     if(auth()->check())
@@ -42,4 +43,9 @@ Route::prefix('auth')->group(function(){
 Route::middleware('auth')->group(function(){
     //rutas del panel
     Route::get('home', function(){return view('panel');})->name('panel');
+
+    //rutas del perfil
+    Route::prefix('profile')->group(function(){
+        Route::get('index', [PerfilController::class, 'index'])->name('profile.index');
+    }); 
 });
