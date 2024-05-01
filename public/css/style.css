@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap');
 
 :root{
-    --verde: #046633;
+    --verde: #068443;
     --gris: #37465D;
-    --amarillo: #F9B233;
+    --amarillo: #f7b440;
     --rojo: #F04848;
     --blanco: #fff;
     --negro: #000;
@@ -98,11 +98,10 @@ body{
 
 .btn{
     border: none;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 10px 15px;
     margin-top: 5px;
     cursor: pointer;
-    transition: background-color .3s;
     transition: all .3s;
     height: 30px;
     display: flex;
@@ -125,12 +124,12 @@ body{
 
 .border{
     border: 1px solid var(--gris);
-    border-radius: 15px;
+    border-radius: 10px;
 }
 
 .box-shadow{
     border: var(--gris-azulado) 1px solid;
-    box-shadow: var(--gris) 0px 1px 2px;
+    box-shadow: var(--gris) 0px 0px 2px;
 }
 
 .non-link{
