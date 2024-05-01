@@ -23,8 +23,15 @@
 @keyframes spin{
     0%{
         transform: rotate(0deg);
+        border-top: var(--verde) 10px solid;
     }
+
+    50%{
+        border-top: var(--amarillo) 10px solid;
+    }
+
     100%{
         transform: rotate(360deg);
+        border-top: var(--verde) 10px solid;
     }
 }

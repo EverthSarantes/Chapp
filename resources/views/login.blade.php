@@ -5,7 +5,7 @@
     <title>{{env('APP_NAME')}} | Iniciar Sesión</title>
 @endsection
 @section('content')
-    <main class="flex-center flex-column">
+    <main class="flex flex-center flex-column">
         <div class="logo-container">
             <img src="/img/logofooter 1.png" alt="logo chapp">
             <h2 class="logo-text">Iniciar Sesión</h2>

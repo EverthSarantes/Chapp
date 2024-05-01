@@ -18,6 +18,8 @@
 
 .login-form{
     max-width: 500px;
+    width: 50%;
+    min-width: 300px;
 }
 
 .input-group{
@@ -79,20 +81,25 @@
 .input-text{
     margin-bottom: 10px;
     user-select: none;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .input{
     height: 30px;
     padding-left: 10px;
-    border: #37465d68 1px solid;
-    box-shadow: var(--gris) 0px 1px 3px;
+    border: var(--gris-azulado) 1px solid;
+    box-shadow: var(--gris) 0px 1px 2px;
+    border-radius: 5px;
 }
 
 .textarea{
     height: 80px;
     padding-top: 5px;
-    border: #37465d68 1px solid;
-    box-shadow: var(--gris) 0px 1px 3px;
+    padding-left: 10px;
+    border: var(--gris-azulado) 1px solid;
+    box-shadow: var(--gris) 0px 1px 2px;
+    border-radius: 5px;
     resize: none;
 }
 

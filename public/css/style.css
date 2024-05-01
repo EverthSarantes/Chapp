@@ -7,6 +7,7 @@
     --rojo: #F04848;
     --blanco: #fff;
     --negro: #000;
+    --gris-azulado: #37465d68;
 }
 
 *{
@@ -97,20 +98,26 @@ body{
 
 .btn{
     border: none;
-    border-radius: 25px;
-    padding: 10px 20px;
+    border-radius: 10px;
+    padding: 10px 15px;
     margin-top: 5px;
     cursor: pointer;
     transition: background-color .3s;
+    transition: all .3s;
     height: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+.btn:hover{
+    background-color: var(--gris);
+    transform: scale(1.05);
+}
+
 .logo-icon{
     width: 100px;
-}
+}   
 
 .logo-icon img{
     width: 100%;
@@ -118,12 +125,12 @@ body{
 
 .border{
     border: 1px solid var(--gris);
-    border-radius: 25px;
+    border-radius: 15px;
 }
 
 .box-shadow{
-    border: #37465d68 1px solid;
-    box-shadow: var(--gris) 0px 1px 3px;
+    border: var(--gris-azulado) 1px solid;
+    box-shadow: var(--gris) 0px 1px 2px;
 }
 
 .non-link{
