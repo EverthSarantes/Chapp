@@ -44,4 +44,19 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function perfil()
+    {
+        return $this->hasOne(Perfil::class);
+    }
+
+    public function infoAcademica()
+    {
+        return $this->hasOne(InfoAcademica::class);
+    }
+
+    public function infoLaboral()
+    {
+        return $this->hasOne(InfoLaboral::class);
+    }
 }
