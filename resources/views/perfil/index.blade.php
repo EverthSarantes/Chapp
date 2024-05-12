@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="/css/form.css">
     <link rel="stylesheet" href="/css/grid.css">
     <link rel="stylesheet" href="/css/tables.css">
+    <link rel="stylesheet" href="/css/dialog.css">
 @endsection
 @section('content')
     <div class="container">
@@ -47,33 +48,34 @@
                 <button class="btn rojo" type="reset">Limpiar</button>
             </div>
         </form>
-
         <div class="form border p-2 box-shadow grid w-100">
-            <form action="" class="doble-column grid mb-2 mt-2">
+            <form action="{{route('profile.saveInfoAcademica')}}" method="POST" class="doble-column grid mb-2 mt-2" autocomplete="off">
+                @csrf
                 <h4 class="doble-column mb-2">Información Academica</h4>
                 <label class="input-group">
                     <span class="input-text">Nivel academico actual</span>
-                    <select name="nivel_academico" id="nivel_academico" class="input">
-                        <option value="Ninguna" value="">Ninguna</option>
-                        <option value="Primaria">Primaria</option>
-                        <option value="Secundaria">Secundaria</option>
-                        <option value="Universidad">Universidad</option>
-                        <option value="Maestria">Maestria</option>
-                        <option value="Doctorado">Doctorado</option>
-                        <option>Ninguno</option>
+                    <select name="nivel_academico" id="nivel_academico" class="input" autocomplete="off">
+                        <option value="Ninguna" @if($info_academica->nivel_academico == 'Ninguna') selected @endif>Ninguna</option>
+                        <option value="Primaria" @if($info_academica->nivel_academico == 'Primaria') selected @endif>Primaria</option>
+                        <option value="Secundaria" @if($info_academica->nivel_academico == 'Secundaria') selected @endif>Secundaria</option>
+                        <option value="Tecnico" @if($info_academica->nivel_academico  == 'Tecnico') selected @endif>Tecnico</option>
+                        <option value="Universidad" @if($info_academica->nivel_academico == 'Universidad') selected @endif>Universidad</option>
+                        <option value="Maestria" @if($info_academica->nivel_academico == 'Maestria') selected @endif>Maestria</option>
+                        <option value="Doctorado" @if($info_academica->nivel_academico == 'Doctorado') selected @endif>Doctorado</option>
                     </select>
                 </label>
                 <div class="button-group flex justify-contente-end">
                     <button class="btn verde self-end" type="submit">Guardar</button>
                 </div>
             </form>
+            <hr class="doble-column">
             <div id="carreras_estudiadas" class="doble-column mb-2 mt-2 grid">
                 <h4 class="mb-2">Carreras Estudiadas</h4>
                 <div class="buton-group mb-2">
-                    <button type="button" class="btn verde">Agregar Carrera</button>
+                    <button type="button" class="btn verde open-modal" data-target="modal_agregar_carrera_estudiada">Agregar Carrera</button>
                 </div>
                 <div class="table-container doble-column">
-                    <table class="table" id="usuarios-tabla">
+                    <table class="table-sm" id="usuarios-tabla">
                         <thead>
                             <tr>
                                 <th>Carrera</th>
@@ -82,33 +84,34 @@
                                 <th>Opciones</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            {{-- @foreach($usuarios as $usuario) --}}
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                        <tbody id="tbody_carreras_estudiadas">
+                            @foreach($info_academica->carrerasEstudiadas as $carrera)
+                                <tr id="tr_carrera_estudiada_{{$carrera->id}}">
+                                    <td>{{$carrera->nombre}}</td>
+                                    <td>{{$carrera->nivel_academico}}</td>
+                                    <td>{{$carrera->institucion}}</td>
                                     <td>
-                                        <form action="">
+                                        <form id="form_delete_carrera_estudiada_{{$carrera->id}}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn rojo" onclick="if(confirm('¿Confirma Eliminar?'))this.parentNode.submit()">Eliminar</button>
+                                            <input type="hidden" name="id" value="{{$carrera->id}}">
+                                            <button type="button" class="btn rojo" onclick="if(confirm('¿Confirma Eliminar?'))deleteCarreraEstudiada({{$carrera->id}})">Eliminar</button>
                                         </form>
                                     </td>
                                 </tr>
-                            {{-- @endforeach --}}
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
-
+            <hr class="doble-column">
             <div id="carreras_estudiar" class="doble-column mb-2 mt-2 grid">
                 <h4 class="mb-2">Carreras que estudia o le gustaría estudiar</h4>
                 <div class="buton-group mb-2">
                     <button type="button" class="btn verde">Agregar Carrera</button>
                 </div>
                 <div class="table-container doble-column">
-                    <table class="table" id="usuarios-tabla">
+                    <table class="table-sm" id="usuarios-tabla">
                         <thead>
                             <tr>
                                 <th>Carrera</th>
@@ -151,7 +154,7 @@
                     </select>
                 </label> --}}
             </div>
-
+            <hr class="doble-column">
             <div id="abilidades" class="doble-column mb-2 mt-2 grid">
                 <h4 class="mb-2">Habilidades que posee</h4>
                 <div class="buton-group mb-2">
@@ -278,4 +281,39 @@
             </div>
         </div>
     </div>
+
+    <!--modales-->
+    <x-modal :id="'modal_agregar_carrera_estudiada'">
+        <form id="form_agregar_carrera_estudiada" method="POST" class="doble-column grid mb-2 mt-2 w-100" autocomplete="off">
+            @csrf
+            <h4 class="doble-column mb-2">Agregar Carrera Estudiada</h4>
+            <label class="input-group">
+                <span class="input-text">Carrera</span>
+                <input list="carreras_mas_cursadas" type="text" name="nombre" class="input" required>
+            </label>
+            <label class="input-group">
+                <span class="input-text">Nivel Academico</span>
+                <select name="nivel_academico" class="input" required>
+                    <option value="Ninguna" value="">Ninguna</option>
+                    <option value="Tecnico">Tecnico</option>
+                    <option value="Ingenieria">Ingenieria</option>
+                    <option value="Licenciatura">Licenciatura</option>
+                    <option value="Maestria">Maestria</option>
+                    <option value="Doctorado">Doctorado</option>
+                </select>
+            </label>
+            <label class="input-group">
+                <span class="input-text">Institución</span>
+                <input type="text" name="institucion" class="input" required>
+            </label>
+            <div class="button-group flex justify-contente-end doble-column">
+                <button class="btn verde self-end" type="button" id="btn_agregar_carrera_estudiada">Guardar</button>
+            </div>
+        </form>
+    </x-modal>
+        
+@endsection
+@section('scripts')
+    <script src="/js/request.js"></script>
+    <script src="/js/perfil/index.js"></script>
 @endsection

@@ -28,4 +28,9 @@ class Perfil extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function infoAcademica()
+    {
+        return $this->hasOne(InfoAcademica::class);
+    }
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\Estadistica\TablesController;
 use App\Http\Controllers\Estadistica\SearchController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Usuario\PerfilController;
+use App\Http\Controllers\Usuario\InfoAcademicaController;
 
 Route::get('/', function () {
     if(auth()->check())
@@ -48,5 +49,14 @@ Route::middleware('auth')->group(function(){
     Route::prefix('profile')->group(function(){
         Route::get('index', [PerfilController::class, 'index'])->name('profile.index');
         Route::post('store', [PerfilController::class, 'store'])->name('profile.store');
+        Route::post('saveInfoAcademica', [PerfilController::class, 'saveInfoAcademica'])->name('profile.saveInfoAcademica');
     }); 
+});
+
+//rutas de api
+Route::prefix('api')->middleware('auth')->group(function(){
+    Route::prefix('info/academica')->group(function(){
+        Route::post('addCarreraEstudiada', [InfoAcademicaController::class, 'addCarreraEstudiada']);
+        Route::delete('deleteCarreraEstudiada', [InfoAcademicaController::class, 'deleteCarreraEstudiada'])->name('info.academica.deleteCarreraEstudiada');
+    });
 });

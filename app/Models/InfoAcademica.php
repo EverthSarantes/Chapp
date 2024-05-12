@@ -23,7 +23,7 @@ class infoAcademica extends Model
 
     public function carrerasEstudiadas()
     {
-        return $this->hasMany(CarrerasEstudiadas::class);
+        return $this->hasMany(CarrerasEstudiadas::class, 'info_academica_id');
     }
 
     public function carrerasPorEstudiar()
