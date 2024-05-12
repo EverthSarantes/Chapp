@@ -47,5 +47,6 @@ Route::middleware('auth')->group(function(){
     //rutas del perfil
     Route::prefix('profile')->group(function(){
         Route::get('index', [PerfilController::class, 'index'])->name('profile.index');
+        Route::post('store', [PerfilController::class, 'store'])->name('profile.store');
     }); 
 });

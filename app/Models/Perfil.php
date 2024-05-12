@@ -20,9 +20,9 @@ class Perfil extends Model
         'user_id',
     ];
 
-    protected $casts = [
-        'fecha_nacimiento' => 'date',
-    ];
+    // protected $casts = [
+    //     'fecha_nacimiento' => 'date:Y-m-d',
+    // ];
 
     public function user()
     {

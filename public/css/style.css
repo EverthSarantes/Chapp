@@ -67,6 +67,10 @@ body{
     justify-content: space-between;
 }
 
+.justify-contente-end{
+    justify-content: end !important;
+}
+
 .flex-center{
     justify-content: center;
     align-items: center;
