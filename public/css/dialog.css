@@ -1,11 +1,10 @@
 .dialog{
     position: fixed;
-    top: 50%;
+    top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1;
     width: 90vw;
-    height: 90vh;
     overflow: auto;
     padding: 10px;
 }

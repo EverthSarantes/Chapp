@@ -16,6 +16,7 @@ return new class extends Migration
 
             $table->string('nombre');
             $table->string('nivel_academico')->nullable();
+            $table->string('institucion')->nullable();
 
             $table->unsignedBigInteger('info_academica_id');
             $table->foreign('info_academica_id')->references('id')->on('info_academicas')

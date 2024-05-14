@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CarrerasEstudiadas;
 use Illuminate\Support\Facades\Auth;
+use App\Models\CarrerasPorEstudiar;
 
 class InfoAcademicaController extends Controller
 {
@@ -42,6 +43,54 @@ class InfoAcademicaController extends Controller
         ]);
 
         $carreraEstudiada = CarrerasEstudiadas::find($request->id);
+
+        if($carreraEstudiada->delete())
+        {
+            return response()->json([
+                'message' => 'Carrera eliminada correctamente',
+                'data' => null
+            ], 200);
+        }
+
+        return response()->json([
+            'message' => 'Error al eliminar la carrera',
+            'data' => null
+        ], 500);
+    }
+
+    public function addCarreraPorEstudiar(Request $request)
+    {
+        $request->validate([
+            'nombre' => 'required',
+            'nivel_academico' => 'required',
+            'institucion' => 'required',
+        ]);
+
+        $carreraEstudiada = new CarrerasPorEstudiar();
+        $carreraEstudiada->fill($request->all());
+        $carreraEstudiada->info_academica_id = Auth::user()->infoAcademica->id;
+
+        if($carreraEstudiada->save())
+        {
+            return response()->json([
+                'message' => 'Carrera guardada correctamente',
+                'data' => $carreraEstudiada
+            ], 200);
+        }
+
+        return response()->json([
+            'message' => 'Error al guardar la carrera',
+            'data' => null
+        ], 500);
+    }
+
+    public function deleteCarreraPorEstudiar(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|exists:carreras_por_estudiars,id'
+        ]);
+
+        $carreraEstudiada = CarrerasPorEstudiar::find($request->id);
 
         if($carreraEstudiada->delete())
         {

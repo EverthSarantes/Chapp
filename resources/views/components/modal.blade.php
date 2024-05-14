@@ -2,8 +2,9 @@
     <div class="grid grid-center">
         {{ $slot }}
     </div>
-    <div class="flex justify-contente-end p-2" style="position: absolute; bottom: 5px; right: 0; width: 100%">
-        <button class="close-modal btn gris">Close</button>
+    <div style="height: 40px;"></div>
+    <div class="flex justify-contente-end p-2" style="position: absolute; bottom: 5px; right: 0; width: 100%; height: 67px;">
+        <button class="close-modal btn gris">Cerrar</button>
     </div>
 </dialog>
 

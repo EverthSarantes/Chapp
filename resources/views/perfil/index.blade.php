@@ -48,8 +48,8 @@
                 <button class="btn rojo" type="reset">Limpiar</button>
             </div>
         </form>
-        <div class="form border p-2 box-shadow grid w-100">
-            <form action="{{route('profile.saveInfoAcademica')}}" method="POST" class="doble-column grid mb-2 mt-2" autocomplete="off">
+        <div class="form grid w-100">
+            <form action="{{route('profile.saveInfoAcademica')}}" method="POST" class="doble-column grid mb-2 mt-2 border p-2 box-shadow" autocomplete="off">
                 @csrf
                 <h4 class="doble-column mb-2">Información Academica</h4>
                 <label class="input-group">
@@ -68,8 +68,7 @@
                     <button class="btn verde self-end" type="submit">Guardar</button>
                 </div>
             </form>
-            <hr class="doble-column">
-            <div id="carreras_estudiadas" class="doble-column mb-2 mt-2 grid">
+            <div id="carreras_estudiadas" class="doble-column mb-2 mt-2 grid border p-2 box-shadow">
                 <h4 class="mb-2">Carreras Estudiadas</h4>
                 <div class="buton-group mb-2">
                     <button type="button" class="btn verde open-modal" data-target="modal_agregar_carrera_estudiada">Agregar Carrera</button>
@@ -104,11 +103,10 @@
                     </table>
                 </div>
             </div>
-            <hr class="doble-column">
-            <div id="carreras_estudiar" class="doble-column mb-2 mt-2 grid">
+            <div id="carreras_estudiar" class="doble-column mb-2 mt-2 grid border p-2 box-shadow">
                 <h4 class="mb-2">Carreras que estudia o le gustaría estudiar</h4>
                 <div class="buton-group mb-2">
-                    <button type="button" class="btn verde">Agregar Carrera</button>
+                    <button type="button" class="btn verde open-modal" data-target="modal_agregar_carrera_por_estudiar">Agregar Carrera</button>
                 </div>
                 <div class="table-container doble-column">
                     <table class="table-sm" id="usuarios-tabla">
@@ -120,42 +118,27 @@
                                 <th>Opciones</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            {{-- @foreach($usuarios as $usuario) --}}
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        <form action="">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn rojo" onclick="if(confirm('¿Confirma Eliminar?'))this.parentNode.submit()">Eliminar</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            {{-- @endforeach --}}
+                        <tbody id="tbody_carreras_por_estudiar">
+                            @foreach($info_academica->carrerasPorEstudiar as $carrera)
+                            <tr id="tr_carrera_por_estudiar_{{$carrera->id}}">
+                                <td>{{$carrera->nombre}}</td>
+                                <td>{{$carrera->nivel_academico}}</td>
+                                <td>{{$carrera->institucion}}</td>
+                                <td>
+                                    <form id="form_delete_carrera_por_estudiar_{{$carrera->id}}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="hidden" name="id" value="{{$carrera->id}}">
+                                        <button type="button" class="btn rojo" onclick="if(confirm('¿Confirma Eliminar?'))deleteCarreraPorEstudiar({{$carrera->id}})">Eliminar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
-                {{-- <label class="input-group">
-                    <span class="input-text">Carrera</span>
-                    <input list="carreras_mas_cursadas" type="text" name="carrera_estudiar[]" class="input">
-                </label>
-                <label class="input-group">
-                    <span class="input-text">Nivel Academico</span>
-                    <select name="nivel_carrera_estudiar[]" class="input">
-                        <option value="Ninguna" value="">Ninguna</option>
-                        <option value="Tecnico">Tecnico</option>
-                        <option value="Ingenieria">Ingenieria</option>
-                        <option value="Licenciatura">Licenciatura</option>
-                        <option value="Maestria">Maestria</option>
-                        <option value="Doctorado">Doctorado</option>
-                    </select>
-                </label> --}}
             </div>
-            <hr class="doble-column">
-            <div id="abilidades" class="doble-column mb-2 mt-2 grid">
+            <div id="abilidades" class="doble-column mb-2 mt-2 grid border p-2 box-shadow">
                 <h4 class="mb-2">Habilidades que posee</h4>
                 <div class="buton-group mb-2">
                     <button type="button" class="btn verde">Agregar Habilidad</button>
@@ -186,7 +169,7 @@
             </datalist>
         </div>
 
-        <div class="form border p-2 mb-2 box-shadow grid w-100">
+        <div class="form mb-2 grid w-100">
             <h4 class="doble-column mb-2">Información Laboral</h4>
             <label class="input-group">
                 <span class="input-text">Situación Laboral Actual</span>
@@ -308,6 +291,35 @@
             </label>
             <div class="button-group flex justify-contente-end doble-column">
                 <button class="btn verde self-end" type="button" id="btn_agregar_carrera_estudiada">Guardar</button>
+            </div>
+        </form>
+    </x-modal>
+
+    <x-modal :id="'modal_agregar_carrera_por_estudiar'">
+        <form id="form_agregar_carrera_por_estudiar" method="POST" class="doble-column grid mb-2 mt-2 w-100" autocomplete="off">
+            @csrf
+            <h4 class="doble-column mb-2">Agregar Carrera Estudiada o Por Estudiar</h4>
+            <label class="input-group">
+                <span class="input-text">Carrera</span>
+                <input list="carreras_mas_cursadas" type="text" name="nombre" class="input" required>
+            </label>
+            <label class="input-group">
+                <span class="input-text">Nivel Academico</span>
+                <select name="nivel_academico" class="input" required>
+                    <option value="Ninguna" value="">Ninguna</option>
+                    <option value="Tecnico">Tecnico</option>
+                    <option value="Ingenieria">Ingenieria</option>
+                    <option value="Licenciatura">Licenciatura</option>
+                    <option value="Maestria">Maestria</option>
+                    <option value="Doctorado">Doctorado</option>
+                </select>
+            </label>
+            <label class="input-group">
+                <span class="input-text">Institución</span>
+                <input type="text" name="institucion" class="input" required>
+            </label>
+            <div class="button-group flex justify-contente-end doble-column">
+                <button class="btn verde self-end" type="button" id="btn_agregar_carrera_por_estudiar">Guardar</button>
             </div>
         </form>
     </x-modal>

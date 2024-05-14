@@ -9,9 +9,12 @@ class CarrerasPorEstudiar extends Model
 {
     use HasFactory;
 
+    protected $table = 'carreras_por_estudiars';
+
     protected $fillable = [
         'nombre',
         'nivel_academico',
+        'institucion',
         'info_academica_id'
     ];
 

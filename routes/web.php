@@ -58,5 +58,7 @@ Route::prefix('api')->middleware('auth')->group(function(){
     Route::prefix('info/academica')->group(function(){
         Route::post('addCarreraEstudiada', [InfoAcademicaController::class, 'addCarreraEstudiada']);
         Route::delete('deleteCarreraEstudiada', [InfoAcademicaController::class, 'deleteCarreraEstudiada'])->name('info.academica.deleteCarreraEstudiada');
+        Route::post('addCarreraPorEstudiar', [InfoAcademicaController::class, 'addCarreraPorEstudiar']);
+        Route::delete('deleteCarreraPorEstudiar', [InfoAcademicaController::class, 'deleteCarreraPorEstudiar'])->name('info.academica.deleteCarreraPorEstudiar');
     });
 });

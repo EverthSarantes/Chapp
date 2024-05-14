@@ -1,5 +1,5 @@
 function saveCarreraEstudiada(){
-    if(document.getElementById('form_agregar_carrera_estudiada').reportValidity ()){
+    if(document.getElementById('form_agregar_carrera_estudiada').reportValidity()){
         let url = local_api_url + 'info/academica/addCarreraEstudiada';
         makeRequest(url, 'POST', (result) => {
             let tbody = document.getElementById('tbody_carreras_estudiadas');
@@ -32,3 +32,38 @@ function deleteCarreraEstudiada(id){
         tr.remove();
     }, null, 'form_delete_carrera_estudiada_'+id);
 }
+
+function saveCarreraPorEstudiar(){
+    if(document.getElementById('form_agregar_carrera_por_estudiar').reportValidity()){
+        let url = local_api_url + 'info/academica/addCarreraPorEstudiar';
+        makeRequest(url, 'POST', (result) => {
+            let tbody = document.getElementById('tbody_carreras_por_estudiar');
+            let tr = document.createElement('tr');
+            tr.id = 'tr_carrera_por_estudiar_'+result.data.id;
+            tr.innerHTML = `
+                <td>${result.data.nombre}</td>
+                <td>${result.data.nivel_academico}</td>
+                <td>${result.data.institucion}</td>
+                <td>
+                    <form id="form_delete_carrera_por_estudiar_${result.data.id}" method="post">
+                        <input type="hidden" name="_token" value="${csrf}" autocomplete="off">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="button" class="btn rojo" onclick="if(confirm('¿Confirma Eliminar?'))deleteCarreraPorEstudiar(${result.data.id})">Eliminar</button>
+                    </form>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        }, null, 'form_agregar_carrera_por_estudiar');
+    }
+    let dialog = document.getElementById('modal_agregar_carrera_por_estudiar');
+    dialog.close();
+}
+
+function deleteCarreraPorEstudiar(id){
+    let url = local_api_url + 'info/academica/deleteCarreraPorEstudiar';
+    makeRequest(url, 'POST', (result) => {
+        let tr = document.getElementById('tr_carrera_por_estudiar_'+id);
+        tr.remove();
+    }, null, 'form_delete_carrera_por_estudiar_'+id);
+}
+document.getElementById('btn_agregar_carrera_por_estudiar').addEventListener('click', saveCarreraPorEstudiar);
