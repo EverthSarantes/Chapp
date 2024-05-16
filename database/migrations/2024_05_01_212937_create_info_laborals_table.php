@@ -15,13 +15,13 @@ return new class extends Migration
             $table->id();
 
             $table->string('situacion_laboral_actual')->nullable();
-            $table->integer('experiencia_laboral')->nullable();
+            $table->decimal('experiencia_laboral')->nullable();
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')
             ->onDelete('cascade')->onUpdate('cascade');
 
-            $table->unsignedBigInteger('categoria_id');
+            $table->unsignedBigInteger('categoria_id')->nullable();
             $table->foreign('categoria_id')->references('id')->on('categorias')
             ->onDelete('cascade')->onUpdate('cascade');
 

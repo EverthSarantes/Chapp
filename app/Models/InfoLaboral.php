@@ -25,4 +25,9 @@ class InfoLaboral extends Model
     {
         return $this->belongsTo(Categoria::class);
     }
+
+    public function profesiones()
+    {
+        return $this->hasMany(Profesion::class);
+    }
 }

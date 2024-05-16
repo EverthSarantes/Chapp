@@ -1,3 +1,4 @@
+//datos academicos
 function saveCarreraEstudiada(){
     if(document.getElementById('form_agregar_carrera_estudiada').reportValidity()){
         let url = local_api_url + 'info/academica/addCarreraEstudiada';
@@ -103,3 +104,38 @@ function deleteHabilidad(id){
 }
 
 document.getElementById('btn_agregar_habilidad').addEventListener('click', saveHabilidad);
+
+//datos laborales
+function addProfesion(){
+    if(document.getElementById('form_agregar_profesion').reportValidity()){
+        let url = local_api_url + 'info/laboral/addProfesion';
+        makeRequest(url, 'POST', (result) => {
+            let tbody = document.getElementById('tbody_profesiones');
+            let tr = document.createElement('tr');
+            tr.id = 'tr_profesion_'+result.data.id;
+            tr.innerHTML = `
+                <td>${result.data.nombre}</td>
+                <td>${result.data.categoria.nombre}</td>
+                <td>
+                    <form id="form_delete_profesion_${result.data.id}" method="post">
+                        <input type="hidden" name="_token" value="${csrf}" autocomplete="off">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="button" class="btn rojo" onclick="if(confirm('¿Confirma Eliminar?'))deleteProfesion(${result.data.id})">Eliminar</button>
+                    </form>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        }, null, 'form_agregar_profesion');
+    }
+    let dialog = document.getElementById('modal_agregar_profesion');
+    dialog.close();
+}
+document.getElementById('btn_agregar_profesion').addEventListener('click', addProfesion);
+
+function deleteProfesion(id){
+    let url = local_api_url + 'info/laboral/deleteProfesion';
+    makeRequest(url, 'POST', (result) => {
+        let tr = document.getElementById('tr_profesion_'+id);
+        tr.remove();
+    }, null, 'form_delete_profesion_'+id);
+}

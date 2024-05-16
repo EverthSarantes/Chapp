@@ -138,7 +138,7 @@
                     </table>
                 </div>
             </div>
-            <div id="abilidades" class="doble-column mb-2 mt-2 grid border p-2 box-shadow">
+            <div id="abilidades" class="doble-column mt-2 grid border p-2 box-shadow">
                 <h4 class="mb-2">Habilidades que posee</h4>
                 <div class="buton-group mb-2">
                     <button type="button" class="btn verde open-modal" data-target="modal_agregar_habilidad">Agregar Habilidad</button>
@@ -187,97 +187,147 @@
         </div>
 
         <div class="form mb-2 grid w-100">
-            <h4 class="doble-column mb-2">Información Laboral</h4>
-            <label class="input-group">
-                <span class="input-text">Situación Laboral Actual</span>
-                <select name="situacion_actual" class="input">
-                    <option value="Ninguna" value="">Ninguna</option>
-                    <option value="Desempleado">Desempleado</option>
-                    <option value="Empleado">Empleado</option>
-                    <option value="Freelancer">Freelancer</option>
-                    <option value="En Busqueda de Empleo">En Busqueda de Empleo</option>
-                </select>
-            </label>
-            <label class="input-group">
-                <span class="input-text">Categoria</span>
-                <select name="categoria_laboral_actual[]" class="input">
-                    <option value="Ninguna" value="">Ninguna</option>
-                </select>
-            </label>
-            <label class="input-group">
-                <span class="input-text">Experiencia Laboral (Años)</span>
-                <input type="number" class="input" name="experiencia_laboral">
-            </label>
+            <form class="doble-column grid mb-2 mt-2 border p-2 box-shadow" autocomplete="off" action="{{route('profile.saveInfoLaboral')}}" method="POST">
+                @csrf
+                <h4 class="doble-column mb-2">Información Laboral</h4>
+                <label class="input-group">
+                    <span class="input-text">Situación Laboral Actual</span>
+                    <select name="situacion_laboral_actual" class="input">
+                        <option value="Ninguna" value="">Ninguna</option>
+                        <option value="Desempleado" @selected($info_laboral->situacion_laboral_actual == 'Desempleado')>Desempleado</option>
+                        <option value="Empleado" @selected($info_laboral->situacion_laboral_actual == 'Empleado')>Empleado</option>
+                        <option value="Freelancer" @selected($info_laboral->situacion_laboral_actual == 'Freelancer')>Freelancer</option>
+                        <option value="En Busqueda de Empleo" @selected($info_laboral->situacion_laboral_actual == 'En Busqueda de Empleo')>En Busqueda de Empleo</option>
+                    </select>
+                </label>
+                <label class="input-group">
+                    <span class="input-text">Categoria</span>
+                    <select name="categoria_id" class="input">
+                        <option value="Ninguna" value="">Ninguna</option>
+                        @foreach ($categorias as $categoria)
+                            <option value="{{$categoria->id}}" @selected($info_laboral->categoria_id == $categoria->id)>{{$categoria->nombre}}</option>
+                        @endforeach
+                    </select>
+                </label>
+                <label class="input-group">
+                    <span class="input-text">Experiencia Laboral (Años)</span>
+                    <input type="number" step="0.1" class="input" name="experiencia_laboral" value="{{$info_laboral->experiencia_laboral}}">
+                </label>
+                <div class="button-group flex justify-contente-end">
+                    <button class="btn verde self-end" type="submit">Guardar</button>
+                </div>
+            </form>
 
-            <div id="profesiones" class="doble-column mt-2 mb-2 grid">
+            <div id="profesiones" class="doble-column grid mb-2 mt-2 border p-2 box-shadow">
                 <h4 class="mb-2">Profesiones</h4>
                 <div class="buton-group mb-2">
-                    <button type="button" class="btn verde">Agregar Profesión</button>
+                    <button type="button" class="btn verde open-modal" data-target="modal_agregar_profesion">Agregar Profesión</button>
                 </div>
-                <label class="input-group">
-                    <span class="input-text">Nombre</span>
-                    <input type="text" name="profesion[]" class="input">
-                </label>
-                <label class="input-group">
-                    <span class="input-text">Categoria</span>
-                    <select name="categoria_profesion[]" class="input">
-                        <option value="Ninguna" value="">Ninguna</option>
-                    </select>
-                </label>
+                <div class="table-container doble-column">
+                    <table class="table-sm" id="usuarios-tabla">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Categoria</th>
+                                <th>Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody_profesiones">
+                            @foreach($info_laboral->profesiones as $profesion)
+                            <tr id="tr_profesion_{{$profesion->id}}">
+                                <td>{{$profesion->nombre}}</td>
+                                <td>{{$profesion->categoria->nombre}}</td>
+                                <td>
+                                    <form id="form_delete_profesion_{{$profesion->id}}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="hidden" name="id" value="{{$profesion->id}}">
+                                        <button type="button" class="btn rojo" onclick="if(confirm('¿Confirma Eliminar?'))deleteProfesion({{$profesion->id}})">Eliminar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
-            <div id="trabajos" class="doble-column mt-2 mb-2 grid">
+            <div id="trabajos" class="doble-column grid mb-2 mt-2 border p-2 box-shadow">
                 <h4 class="mb-2">Trabajos</h4>
                 <div class="buton-group mb-2">
-                    <button type="button" class="btn verde">Agregar Trabajo</button>
+                    <button type="button" class="btn verde open-modal" data-target="modal_agregar_trabajo">Agregar Trabajo</button>
                 </div>
-                <label class="input-group">
-                    <span class="input-text">Nombre</span>
-                    <input type="text" name="trabajo[]" class="input">
-                </label>
-                <label class="input-group">
-                    <span class="input-text">Categoria</span>
-                    <select name="categoria_trabajo[]" class="input">
-                        <option value="Ninguna" value="">Ninguna</option>
-                    </select>
-                </label>
-                <label class="input-group">
-                    <span class="input-text">Fecha de Inicio</span>
-                    <input type="date" name="fecha_inicio_trabajo[]" class="input">
-                </label>
-                <label class="input-group">
-                    <span class="input-text">Fecha de Fin</span>
-                    <input type="date" name="fecha_fin_trabajo[]" class="input">
-                </label>
-                <label class="input-group">
-                    <span class="input-text">Institución</span>
-                    <input type="text" name="institucion_trabajo[]" class="input">
-                </label>
+                <div class="table-container doble-column">
+                    <table class="table-sm" id="usuarios-tabla">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Categoria</th>
+                                <th>Fecha de Inicio</th>
+                                <th>Fecha de Fin</th>
+                                <th>Institución</th>
+                                <th>Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody_trabajos">
+                            {{-- @foreach(Auth::user()->trabajos as $trabajo)
+                            <tr id="tr_trabajo_{{$trabajo->id}}">
+                                <td>{{$trabajo->nombre}}</td>
+                                <td>{{$trabajo->categoria->nombre}}</td>
+                                <td>{{$trabajo->fecha_inicio}}</td>
+                                <td>{{$trabajo->fecha_fin}}</td>
+                                <td>{{$trabajo->institucion}}</td>
+                                <td>
+                                    <form id="form_delete_trabajo_{{$trabajo->id}}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="hidden" name="id" value="{{$trabajo->id}}">
+                                        <button type="button" class="btn rojo" onclick="if(confirm('¿Confirma Eliminar?'))deleteTrabajo({{$trabajo->id}})">Eliminar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach --}}
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
-            <div id="proyectos" class="doble-column mt-2 mb-2 grid">
+            <div id="proyectos" class="doble-column grid mb-2 mt-2 border p-2 box-shadow">
                 <h4 class="mb-2">Proyectos</h4>
                 <div class="buton-group mb-2">
-                    <button type="button" class="btn verde">Agregar Proyecto</button>
+                    <button type="button" class="btn verde open-modal" data-target="modal_agregar_proyecto">Agregar Proyecto</button>
                 </div>
-                <label class="input-group">
-                    <span class="input-text">Nombre</span>
-                    <input type="text" name="proyecto[]" class="input">
-                </label>
-                <label class="input-group">
-                    <span class="input-text">Categoria</span>
-                    <select name="categoria_proyecto[]" class="input">
-                        <option value="Ninguna" value="">Ninguna</option>
-                    </select>
-                </label>
-                <label class="input-group">
-                    <span class="input-text">Fecha de Inicio</span>
-                    <input type="date" name="fecha_inicio_proyecto[]" class="input">
-                </label>
-                <label class="input-group">
-                    <span class="input-text">Fecha de Fin</span>
-                    <input type="date" name="fecha_fin_proyecto[]" class="input">
-                </label>
+                <div class="table-container doble-column">
+                    <table class="table-sm" id="usuarios-tabla">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Categoria</th>
+                                <th>Fecha de Inicio</th>
+                                <th>Fecha de Fin</th>
+                                <th>Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody_proyectos">
+                            {{-- @foreach(Auth::user()->proyectos as $proyecto)
+                            <tr id="tr_proyecto_{{$proyecto->id}}">
+                                <td>{{$proyecto->nombre}}</td>
+                                <td>{{$proyecto->categoria->nombre}}</td>
+                                <td>{{$proyecto->fecha_inicio}}</td>
+                                <td>{{$proyecto->fecha_fin}}</td>
+                                <td>
+                                    <form id="form_delete_proyecto_{{$proyecto->id}}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="hidden" name="id" value="{{$proyecto->id}}">
+                                        <button type="button" class="btn rojo" onclick="if(confirm('¿Confirma Eliminar?'))deleteProyecto({{$proyecto->id}})">Eliminar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach --}}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -360,6 +410,95 @@
             </label>
             <div class="button-group flex justify-contente-end doble-column">
                 <button class="btn verde self-end" type="button" id="btn_agregar_habilidad">Guardar</button>
+            </div>
+        </form>
+    </x-modal>
+
+    <x-modal :id="'modal_agregar_profesion'">
+        <form id="form_agregar_profesion" method="POST" class="doble-column grid mb-2 mt-2 w-100">
+            @csrf
+            <h4 class="doble-column mb-2">Agregar Profesion</h4>
+            <label class="input-group">
+                <span class="input-text">Nombre</span>
+                <input type="text" name="nombre" class="input" required>
+            </label>
+            <label class="input-group">
+                <span class="input-text">Categoria</span>
+                <select name="categoria_id" class="input" required autocomplete="off">
+                    <option value="Ninguna" value="">Ninguna</option>
+                    @foreach ($categorias as $categoria)
+                        <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
+                    @endforeach
+                </select>
+            </label>
+            <div class="button-group flex justify-contente-end doble-column">
+                <button class="btn verde self-end" type="button" id="btn_agregar_profesion">Guardar</button>
+            </div>
+        </form>
+    </x-modal>
+
+    <x-modal :id="'modal_agregar_trabajo'">
+        <form id="form_agregar_trabajo" method="POST" class="doble-column grid mb-2 mt-2 w-100">
+            @csrf
+            <h4 class="doble-column mb-2">Agregar Trabajo</h4>
+            <label class="input-group">
+                <span class="input-text">Nombre</span>
+                <input type="text" name="nombre" class="input" required>
+            </label>
+            <label class="input-group">
+                <span class="input-text">Categoria</span>
+                <select name="categoria_id" class="input" required autocomplete="off">
+                    <option value="Ninguna" value="">Ninguna</option>
+                    @foreach ($categorias as $categoria)
+                        <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
+                    @endforeach
+                </select>
+            </label>
+            <label class="input-group">
+                <span class="input-text">Fecha de Inicio</span>
+                <input type="date" name="fecha_inicio" class="input" required>
+            </label>
+            <label class="input-group">
+                <span class="input-text">Fecha de Fin</span>
+                <input type="date" name="fecha_fin" class="input" required>
+            </label>
+            <label class="input-group">
+                <span class="input-text">Institución</span>
+                <input type="text" name="institucion" class="input" required>
+            </label>
+            <div class="button-group flex justify-contente-end doble-column">
+                <button class="btn verde self-end" type="button" id="btn_agregar_trabajo">Guardar</button>
+            </div>
+        </form>
+    </x-modal>
+
+    <x-modal :id="'modal_agregar_proyecto'">
+        <form id="form_agregar_proyecto" method="POST" class="doble-column grid mb-2 mt-2 w-100">
+            @csrf
+            <h4 class="doble-column mb-2">Agregar Proyecto</h4>
+            <label class="input-group">
+                <span class="input-text">Nombre</span>
+                <input type="text" name="nombre" class="input" required>
+            </label>
+            <label class="input-group">
+                <span class="input-text">Categoria</span>
+                <select name="categoria_id" class="input" required autocomplete="off">
+                    <option value="Ninguna" value="">Ninguna</option>
+                    @foreach ($categorias as $categoria)
+                        <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
+                    @endforeach
+                </select>
+            </label>
+            <label class="input-group">
+                <span class="input-text">Fecha de Inicio</span>
+                <input type="date" name="fecha_inicio" class="input" required>
+            </label>
+            <label class="input-group">
+                <span class="input-text">Fecha de Fin</span>
+                <input type="date" name="fecha_fin" class="input" required>
+            </label>
+            <div class="button-group flex justify-contente-end doble-column">
+                <button class="btn verde self-end" type="button" id="btn_agregar_proyecto">Guardar</button>
             </div>
         </form>
     </x-modal>

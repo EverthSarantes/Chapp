@@ -6,6 +6,7 @@ use App\Http\Controllers\Estadistica\SearchController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Usuario\PerfilController;
 use App\Http\Controllers\Usuario\InfoAcademicaController;
+use App\Http\Controllers\Usuario\InfoLaboralController;
 
 Route::get('/', function () {
     if(auth()->check())
@@ -50,6 +51,7 @@ Route::middleware('auth')->group(function(){
         Route::get('index', [PerfilController::class, 'index'])->name('profile.index');
         Route::post('store', [PerfilController::class, 'store'])->name('profile.store');
         Route::post('saveInfoAcademica', [PerfilController::class, 'saveInfoAcademica'])->name('profile.saveInfoAcademica');
+        Route::post('saveInfoLaboral', [PerfilController::class, 'saveInfoLaboral'])->name('profile.saveInfoLaboral');
     }); 
 });
 
@@ -62,5 +64,10 @@ Route::prefix('api')->middleware('auth')->group(function(){
         Route::delete('deleteCarreraPorEstudiar', [InfoAcademicaController::class, 'deleteCarreraPorEstudiar'])->name('info.academica.deleteCarreraPorEstudiar');
         Route::post('addHabilidad', [InfoAcademicaController::class, 'addHabilidad']);
         Route::delete('deleteHabilidad', [InfoAcademicaController::class, 'deleteHabilidad'])->name('info.academica.deleteHabilidad');
+    });
+
+    Route::prefix('info/laboral')->group(function(){
+        Route::post('addProfesion', [InfoLaboralController::class, 'addProfesion']);
+        Route::delete('deleteProfesion', [InfoLaboralController::class, 'deleteProfesion'])->name('info.laboral.deleteProfesion');
     });
 });
