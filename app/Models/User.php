@@ -59,4 +59,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(InfoLaboral::class);
     }
+
+    public function habilidades()
+    {
+        return $this->hasMany(Habilidad::class);
+    }
 }

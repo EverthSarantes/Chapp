@@ -141,18 +141,35 @@
             <div id="abilidades" class="doble-column mb-2 mt-2 grid border p-2 box-shadow">
                 <h4 class="mb-2">Habilidades que posee</h4>
                 <div class="buton-group mb-2">
-                    <button type="button" class="btn verde">Agregar Habilidad</button>
+                    <button type="button" class="btn verde open-modal" data-target="modal_agregar_habilidad">Agregar Habilidad</button>
                 </div>
-                <label class="input-group">
-                    <span class="input-text">Nombre</span>
-                    <input type="text" name="habilidad[]" class="input">
-                </label>
-                <label class="input-group">
-                    <span class="input-text">Categoria</span>
-                    <select name="categoria_habilidad[]" class="input">
-                        <option value="Ninguna" value="">Ninguna</option>
-                    </select>
-                </label>
+                <div class="table-container doble-column">
+                    <table class="table-sm" id="usuarios-tabla">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Categoria</th>
+                                <th>Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody_habilidades">
+                            @foreach(Auth::user()->habilidades as $habilidad)
+                            <tr id="tr_habilidad_{{$habilidad->id}}">
+                                <td>{{$habilidad->nombre}}</td>
+                                <td>{{$habilidad->categoria->nombre}}</td>
+                                <td>
+                                    <form id="form_delete_habilidad_{{$habilidad->id}}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="hidden" name="id" value="{{$habilidad->id}}">
+                                        <button type="button" class="btn rojo" onclick="if(confirm('¿Confirma Eliminar?'))deleteHabilidad({{$habilidad->id}})">Eliminar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <datalist id="carreras_mas_cursadas">
                 <option value="Ingeniería de Sistemas">
@@ -267,7 +284,7 @@
 
     <!--modales-->
     <x-modal :id="'modal_agregar_carrera_estudiada'">
-        <form id="form_agregar_carrera_estudiada" method="POST" class="doble-column grid mb-2 mt-2 w-100" autocomplete="off">
+        <form id="form_agregar_carrera_estudiada" method="POST" class="doble-column grid mb-2 mt-2 w-100">
             @csrf
             <h4 class="doble-column mb-2">Agregar Carrera Estudiada</h4>
             <label class="input-group">
@@ -276,7 +293,7 @@
             </label>
             <label class="input-group">
                 <span class="input-text">Nivel Academico</span>
-                <select name="nivel_academico" class="input" required>
+                <select name="nivel_academico" class="input" required autocomplete="off">
                     <option value="Ninguna" value="">Ninguna</option>
                     <option value="Tecnico">Tecnico</option>
                     <option value="Ingenieria">Ingenieria</option>
@@ -296,7 +313,7 @@
     </x-modal>
 
     <x-modal :id="'modal_agregar_carrera_por_estudiar'">
-        <form id="form_agregar_carrera_por_estudiar" method="POST" class="doble-column grid mb-2 mt-2 w-100" autocomplete="off">
+        <form id="form_agregar_carrera_por_estudiar" method="POST" class="doble-column grid mb-2 mt-2 w-100">
             @csrf
             <h4 class="doble-column mb-2">Agregar Carrera Estudiada o Por Estudiar</h4>
             <label class="input-group">
@@ -305,7 +322,7 @@
             </label>
             <label class="input-group">
                 <span class="input-text">Nivel Academico</span>
-                <select name="nivel_academico" class="input" required>
+                <select name="nivel_academico" class="input" required autocomplete="off">
                     <option value="Ninguna" value="">Ninguna</option>
                     <option value="Tecnico">Tecnico</option>
                     <option value="Ingenieria">Ingenieria</option>
@@ -320,6 +337,29 @@
             </label>
             <div class="button-group flex justify-contente-end doble-column">
                 <button class="btn verde self-end" type="button" id="btn_agregar_carrera_por_estudiar">Guardar</button>
+            </div>
+        </form>
+    </x-modal>
+
+    <x-modal :id="'modal_agregar_habilidad'">
+        <form id="form_agregar_habilidad" method="POST" class="doble-column grid mb-2 mt-2 w-100">
+            @csrf
+            <h4 class="doble-column mb-2">Agregar Habilidad</h4>
+            <label class="input-group">
+                <span class="input-text">Nombre</span>
+                <input type="text" name="nombre" class="input" required>
+            </label>
+            <label class="input-group">
+                <span class="input-text">Categoria</span>
+                <select name="categoria_id" class="input" required autocomplete="off">
+                    <option value="Ninguna" value="">Ninguna</option>
+                    @foreach ($categorias as $categoria)
+                        <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
+                    @endforeach
+                </select>
+            </label>
+            <div class="button-group flex justify-contente-end doble-column">
+                <button class="btn verde self-end" type="button" id="btn_agregar_habilidad">Guardar</button>
             </div>
         </form>
     </x-modal>

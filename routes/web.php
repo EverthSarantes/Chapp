@@ -14,7 +14,7 @@ Route::get('/', function () {
     }
 
     return view('login');
-});
+})->name('/');
 
 //rutas de las estadisticas
 Route::get('estadisticas', function () {
@@ -37,7 +37,7 @@ Route::prefix('auth')->group(function(){
     Route::post('store', [AuthController::class, 'store'])->name('auth.store');
 
     Route::post('login', [AuthController::class, 'login'])->name('auth.login');
-    Route::post('logout', [AuthController::class, 'logout'])->name('auth.logout');
+    Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
 });
 
 //rutas de la aplicación
@@ -60,5 +60,7 @@ Route::prefix('api')->middleware('auth')->group(function(){
         Route::delete('deleteCarreraEstudiada', [InfoAcademicaController::class, 'deleteCarreraEstudiada'])->name('info.academica.deleteCarreraEstudiada');
         Route::post('addCarreraPorEstudiar', [InfoAcademicaController::class, 'addCarreraPorEstudiar']);
         Route::delete('deleteCarreraPorEstudiar', [InfoAcademicaController::class, 'deleteCarreraPorEstudiar'])->name('info.academica.deleteCarreraPorEstudiar');
+        Route::post('addHabilidad', [InfoAcademicaController::class, 'addHabilidad']);
+        Route::delete('deleteHabilidad', [InfoAcademicaController::class, 'deleteHabilidad'])->name('info.academica.deleteHabilidad');
     });
 });

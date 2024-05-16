@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\CarrerasEstudiadas;
 use Illuminate\Support\Facades\Auth;
 use App\Models\CarrerasPorEstudiar;
+use App\Models\Habilidad;
 
 class InfoAcademicaController extends Controller
 {
@@ -102,6 +103,54 @@ class InfoAcademicaController extends Controller
 
         return response()->json([
             'message' => 'Error al eliminar la carrera',
+            'data' => null
+        ], 500);
+    }
+
+    public function addHabilidad(Request $request)
+    {
+        $request->validate([
+            'nombre' => 'required',
+            'categoria_id' => 'required|exists:categorias,id',
+        ]);
+
+        $habilidad = new Habilidad();
+        $habilidad->fill($request->all());
+        $habilidad->user_id = Auth::id();
+
+        if($habilidad->save())
+        {
+            $habilidad->categoria;
+            return response()->json([
+                'message' => 'Habilidad guardada correctamente',
+                'data' => $habilidad
+            ], 200);
+        }
+
+        return response()->json([
+            'message' => 'Error al guardar la habilidad',
+            'data' => null
+        ], 500);
+    }
+
+    public function deleteHabilidad(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|exists:habilidads,id'
+        ]);
+
+        $habilidad = Habilidad::find($request->id);
+
+        if($habilidad->delete())
+        {
+            return response()->json([
+                'message' => 'Habilidad eliminada correctamente',
+                'data' => null
+            ], 200);
+        }
+
+        return response()->json([
+            'message' => 'Error al eliminar la habilidad',
             'data' => null
         ], 500);
     }

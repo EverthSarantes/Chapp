@@ -5,8 +5,9 @@ namespace App\Http\Controllers\Usuario;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Perfil;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use App\Models\InfoAcademica;
+use App\Models\Categoria;
 
 class PerfilController extends Controller
 {
@@ -14,7 +15,8 @@ class PerfilController extends Controller
     {
         $perfil = Auth::user()->perfil ?? new Perfil();
         $info_academica = Auth::user()->infoAcademica ?? new InfoAcademica();
-        return view('perfil.index', compact('perfil', 'info_academica'));
+        $categorias = Categoria::all();
+        return view('perfil.index', compact('perfil', 'info_academica', 'categorias'));
     }
 
     public function store(Request $requet)

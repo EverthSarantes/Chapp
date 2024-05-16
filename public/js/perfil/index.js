@@ -67,3 +67,39 @@ function deleteCarreraPorEstudiar(id){
     }, null, 'form_delete_carrera_por_estudiar_'+id);
 }
 document.getElementById('btn_agregar_carrera_por_estudiar').addEventListener('click', saveCarreraPorEstudiar);
+
+function saveHabilidad(){
+    if(document.getElementById('form_agregar_habilidad').reportValidity()){
+        let url = local_api_url + 'info/academica/addHabilidad';
+        makeRequest(url, 'POST', (result) => {
+            console.log(result);
+            let tbody = document.getElementById('tbody_habilidades');
+            let tr = document.createElement('tr');
+            tr.id = 'tr_habilidad_'+result.data.id;
+            tr.innerHTML = `
+                <td>${result.data.nombre}</td>
+                <td>${result.data.categoria.nombre}</td>
+                <td>
+                    <form id="form_delete_habilidad_${result.data.id}" method="post">
+                        <input type="hidden" name="_token" value="${csrf}" autocomplete="off">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="button" class="btn rojo" onclick="if(confirm('¿Confirma Eliminar?'))deleteHabilidad(${result.data.id})">Eliminar</button>
+                    </form>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        }, null, 'form_agregar_habilidad');
+    }
+    let dialog = document.getElementById('modal_agregar_habilidad');
+    dialog.close();
+}
+
+function deleteHabilidad(id){
+    let url = local_api_url + 'info/academica/deleteHabilidad';
+    makeRequest(url, 'POST', (result) => {
+        let tr = document.getElementById('tr_habilidad_'+id);
+        tr.remove();
+    }, null, 'form_delete_habilidad_'+id);
+}
+
+document.getElementById('btn_agregar_habilidad').addEventListener('click', saveHabilidad);

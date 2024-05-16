@@ -11,9 +11,12 @@
             </ul>
         </nav>
     </div>
-    <div>
+    <div class="flex flex-column">
         <hr class="mt-2 mb-2 c-negro">
         <img src="" alt="Imagen de perfil del usuario">
+        <a href="{{route('auth.logout')}}" class="non-link">
+            Cerrar Sesión
+        </a>
     </div>
 </div>
 <div id="sidebar-overlay" class="sidebar-overlay toggle-sidebar sidebar-overlay-inactive"></div>
