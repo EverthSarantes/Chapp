@@ -270,23 +270,23 @@
                             </tr>
                         </thead>
                         <tbody id="tbody_trabajos">
-                            {{-- @foreach(Auth::user()->trabajos as $trabajo)
-                            <tr id="tr_trabajo_{{$trabajo->id}}">
-                                <td>{{$trabajo->nombre}}</td>
-                                <td>{{$trabajo->categoria->nombre}}</td>
-                                <td>{{$trabajo->fecha_inicio}}</td>
-                                <td>{{$trabajo->fecha_fin}}</td>
-                                <td>{{$trabajo->institucion}}</td>
-                                <td>
-                                    <form id="form_delete_trabajo_{{$trabajo->id}}" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <input type="hidden" name="id" value="{{$trabajo->id}}">
-                                        <button type="button" class="btn rojo" onclick="if(confirm('¿Confirma Eliminar?'))deleteTrabajo({{$trabajo->id}})">Eliminar</button>
-                                    </form>
-                                </td>
-                            </tr>
-                            @endforeach --}}
+                            @foreach($info_laboral->trabajos as $trabajo)
+                                <tr id="tr_trabajo_{{$trabajo->id}}">
+                                    <td>{{$trabajo->nombre}}</td>
+                                    <td>{{$trabajo->categoria->nombre}}</td>
+                                    <td>{{$trabajo->fecha_inicio}}</td>
+                                    <td>{{$trabajo->fecha_fin}}</td>
+                                    <td>{{$trabajo->institucion}}</td>
+                                    <td>
+                                        <form id="form_delete_trabajo_{{$trabajo->id}}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <input type="hidden" name="id" value="{{$trabajo->id}}">
+                                            <button type="button" class="btn rojo" onclick="if(confirm('¿Confirma Eliminar?'))deleteTrabajo({{$trabajo->id}})">Eliminar</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -309,7 +309,7 @@
                             </tr>
                         </thead>
                         <tbody id="tbody_proyectos">
-                            {{-- @foreach(Auth::user()->proyectos as $proyecto)
+                            @foreach($info_laboral->proyectos as $proyecto)
                             <tr id="tr_proyecto_{{$proyecto->id}}">
                                 <td>{{$proyecto->nombre}}</td>
                                 <td>{{$proyecto->categoria->nombre}}</td>
@@ -324,7 +324,7 @@
                                     </form>
                                 </td>
                             </tr>
-                            @endforeach --}}
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -448,7 +448,7 @@
             <label class="input-group">
                 <span class="input-text">Categoria</span>
                 <select name="categoria_id" class="input" required autocomplete="off">
-                    <option value="Ninguna" value="">Ninguna</option>
+                    <option value="">Ninguna</option>
                     @foreach ($categorias as $categoria)
                         <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
                     @endforeach
@@ -483,7 +483,7 @@
             <label class="input-group">
                 <span class="input-text">Categoria</span>
                 <select name="categoria_id" class="input" required autocomplete="off">
-                    <option value="Ninguna" value="">Ninguna</option>
+                    <option value="">Ninguna</option>
                     @foreach ($categorias as $categoria)
                         <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
                     @endforeach

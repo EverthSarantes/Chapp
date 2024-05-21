@@ -30,4 +30,14 @@ class InfoLaboral extends Model
     {
         return $this->hasMany(Profesion::class);
     }
+
+    public function trabajos()
+    {
+        return $this->hasMany(Trabajo::class);
+    }
+
+    public function proyectos()
+    {
+        return $this->hasMany(Proyecto::class);
+    }
 }

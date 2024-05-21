@@ -10,10 +10,12 @@ class Trabajo extends Model
     use HasFactory;
 
     protected $fillable = [
-        'situacion_laboral_actual',
-        'experiencia_laboral',
-        'user_id',
-        'categoria_id',
+        'nombre',
+        'fecha_inicio',
+        'fecha_fin',
+        'institucion',
+        'info_laboral_id',
+        'categoria_id'
     ];
 
     public function user()

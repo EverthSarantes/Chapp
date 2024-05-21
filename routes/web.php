@@ -69,5 +69,9 @@ Route::prefix('api')->middleware('auth')->group(function(){
     Route::prefix('info/laboral')->group(function(){
         Route::post('addProfesion', [InfoLaboralController::class, 'addProfesion']);
         Route::delete('deleteProfesion', [InfoLaboralController::class, 'deleteProfesion'])->name('info.laboral.deleteProfesion');
+        Route::post('addTrabajo', [InfoLaboralController::class, 'addTrabajo']);
+        Route::delete('deleteTrabajo', [InfoLaboralController::class, 'deleteTrabajo'])->name('info.laboral.deleteTrabajo');
+        Route::post('addProyecto', [InfoLaboralController::class, 'addProyecto']);
+        Route::delete('deleteProyecto', [InfoLaboralController::class, 'deleteProyecto'])->name('info.laboral.deleteProyecto');
     });
 });
