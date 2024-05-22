@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Brand;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Categoria;
 
-class BrandFactory extends Factory
+class CategoriaFactory extends Factory
 {
-    protected $model = Brand::class;
+    protected $model = Categoria::class;
 
     public function definition()
     {
         return [
-            'name' => $this->faker->company,
+            'nombre' => $this->faker->word
         ];
     }
 }

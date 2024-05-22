@@ -25,6 +25,9 @@
     <x-loader />
 </body>
 @yield('scripts')
+<script>
+    const csrf = "{{ csrf_token() }}";
+</script>
 <script src="/js/sidebar.js"></script>
 <script src="/js/loader.js"></script>
 </html>

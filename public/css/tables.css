@@ -24,3 +24,21 @@
     background-color: var(--verde);
     color: var(--blanco);
 }
+
+.table-sm{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-sm td, .table-sm th {
+    border: 1px solid var(--blanco);
+    padding: 4px;
+}
+
+.table-sm th {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    text-align: left;
+    background-color: var(--verde);
+    color: var(--blanco);
+}
