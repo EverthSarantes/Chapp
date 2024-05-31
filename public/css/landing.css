@@ -52,3 +52,65 @@
 .color-text a{
     color: #000000;
 }
+
+.container {
+    width: 100%;
+    height: 100%;
+}
+.color-lightgreen {
+    color: #66CC87;
+}
+
+.color-lightblue{
+    color: #668CCC;
+}
+.display-flex{
+    display: flex;
+    justify-content: space-between; /* Espacio entre el logo y las opciones de navegación */
+
+}
+
+.float-right {
+    float: right;
+}
+
+.top-margin-20px{
+    margin-top: 20px;
+}
+.top-margin-10px{
+    margin-top: 10px;
+}
+
+.top-margin-70px{
+    margin-top: 70px;
+}
+
+.top-margin-40px{
+    margin-top: 40px;
+}
+
+.right-margin-110px{
+    margin-right: 110px;
+}
+
+.left-margin-110px{
+    margin-left: 110px;
+}
+
+.img-size{
+    width: 480px;
+}
+
+.font-size{
+    font-size: 50px;
+}
+
+.btn{
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #2A2CBC;
+    border: none;
+    color: #ffffff;
+    font-weight: bold;
+}
