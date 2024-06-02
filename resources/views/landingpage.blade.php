@@ -24,17 +24,17 @@
     </header>
 
     <div class="container" id="container">
-        <div class="display-flex">
+        <div class="display-flex bottom-margin">
             <div class="left-margin-110px top-margin-40px">
                 <h1 class="font-size">
-                    El Puente Entre Tu <br> 
+                    El Puente Entre Tu <br>
                     <span class="color-lightgreen">Talento</span> y
-                    <span class="color-lightblue">Oportunidades</span> <br> 
+                    <span class="color-lightblue">Oportunidades</span> <br>
                     Ilimitadas.
                 </h1>
 
                 <h3 class="top-margin-20px">
-                    Da el paso al siguiente nivel y oferta tus habilidades <br>  técnicas y profecionales
+                    Da el paso al siguiente nivel y oferta tus habilidades <br> técnicas y profecionales
                 </h3>
 
                 <button class="btn top-margin-10px">Registrate</button>
@@ -44,9 +44,97 @@
             </div>
         </div>
     </div>
-    <div>
+    <div class="container">
+        <div class="background-5792AD">
+            <div>
+                <div class="text-center color-white">
+                    <div class="text-size-24px">
+                        <h2 class="padding-top-20px">
+                            Compañias que confian en nosotros
+                        </h2>
+                    </div>
+                    <p class="text-size-20px pading-top">
+                        Las principales compañias usan Chapp para contratar servicos tecnicos y profecionales
+                    </p>
+                </div>
+
+
+                <div class="display-flex center-contend">
+                    <div class="image-with pading">
+                        <img class="img-size" src="{{ asset('images/logo (2).png') }}" alt="Landing">
+                        <img class="img-size" src="{{ asset('images/logo (3).png') }}" alt="Landing">
+                        <img class="img-size" src="{{ asset('images/logo (4).png') }}" alt="Landing">
+                        <img class="img-size" src="{{ asset('images/logo (5).png') }}" alt="Landing">
+                        <img class="img-size" src="{{ asset('images/logo (6).png') }}" alt="Landing">
+                        <img class="img-size" src="{{ asset('images/logo (7).png') }}" alt="Landing">
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
+
+    <div class="container">
+        <div class="padding-top-20px text-center">
+            <h3 class="text-size-24px">
+                Funcionalidades
+            </h3>
+            <p class="text-size-20px padding-top-10px">
+                Te facilitamos la tarea de ofertar tus servicios
+            </p>
+
+        </div>
+
+        <div id="cards" class="flex-display pading-card padding-top-20px center-contend">
+
+            <div id="card1" class="card">
+                <div class="flex-display center-contend">
+                    <img class="cards-img-with" src="{{ asset('images/team-building 1.png') }}" alt="team">
+                </div>
+
+                <div class="text-center">
+                    <h4 class="padding-top-10px text-size-20px">Equipos</h4>
+                    <p class="padding-top-10px"> 
+                        Crea tu equipo de trabajo agregando miembros que esten registrados
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div id="card2" class="card">
+                <div class="flex-display center-contend">
+                    <img class="cards-img-with" src="{{ asset('images/ofrecimiento 1.png') }}" alt="team">
+                </div>
+
+                <div class="text-center">
+                    <h4 class="padding-top-10px text-size-20px">Aumenta tu flujo de trabajo</h4>
+                    <p class="padding-top-10px"> 
+                        Ten acceso a una amplia gama de posibles trabajos que ofertan las empresas y otros usuarios
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div id="card3" class="card">
+                <div class="flex-display center-contend">
+                    <img class="cards-img-with" src="{{ asset('images/red 1.png') }}" alt="team">
+                </div>
+
+                <div class="text-center">
+                    <h4 class="padding-top-10px text-size-20px">Conecta</h4>
+                    <p class="padding-top-10px"> 
+                        Conoce a personas de distintos rubros de trabajo
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
 </body>
 
 </html>
