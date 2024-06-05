@@ -17,7 +17,7 @@
                     <li><a href="#">Subscripciones</a></li>
                     <li><a href="#">Trabajos</a></li>
                     <li><a href="#">Articulos</a></li>
-                    <li class="color-text"><a href="#" class="login-button ">Iniciar Sesión</a></li>
+                    <li class="color-text"><a href="autentication" class="login-button ">Iniciar Sesión</a></li>
                 </ul>
             </nav>
         </div>
@@ -37,7 +37,9 @@
                     Da el paso al siguiente nivel y oferta tus habilidades <br> técnicas y profecionales
                 </h3>
 
-                <button class="btn top-margin-10px">Registrate</button>
+                <div class="btn top-margin-10px center color-white link-none-style">
+                    <a href="auth/register">Registrarse</a>
+                </div>
             </div>
             <div class="float-right right-margin-110px top-margin-70px ">
                 <img class="img-size" src="{{ asset('images/landing.png') }}" alt="Landing">
@@ -94,7 +96,7 @@
 
                 <div class="text-center">
                     <h4 class="padding-top-10px text-size-20px">Equipos</h4>
-                    <p class="padding-top-10px"> 
+                    <p class="padding-top-10px">
                         Crea tu equipo de trabajo agregando miembros que esten registrados
                     </p>
 
@@ -109,7 +111,7 @@
 
                 <div class="text-center">
                     <h4 class="padding-top-10px text-size-20px">Aumenta tu flujo de trabajo</h4>
-                    <p class="padding-top-10px"> 
+                    <p class="padding-top-10px">
                         Ten acceso a una amplia gama de posibles trabajos que ofertan las empresas y otros usuarios
                     </p>
 
@@ -124,7 +126,7 @@
 
                 <div class="text-center">
                     <h4 class="padding-top-10px text-size-20px">Conecta</h4>
-                    <p class="padding-top-10px"> 
+                    <p class="padding-top-10px">
                         Conoce a personas de distintos rubros de trabajo
                     </p>
 
@@ -134,6 +136,61 @@
 
         </div>
     </div>
+
+    <footer class="container">
+        <div class="background-5792AD display-flex">
+            <div class="left-margin-110px">
+                <div class="top-margin-40px">
+                    <img class="img-size-50px" src="{{ asset('images/logo.png') }}" alt="Logo">
+                </div>
+                <div class="color-white">
+                    <h6 class="top-margin-20px">
+                        © 2021 Chapp, Inc. <br>
+                        All rights reserved
+                    </h6>
+
+                    <div id="socialmedia" class="top-margin-40px">
+                        <img src="{{ asset('images/socialmedia/Social Icons.png') }}" alt="">
+                        <img src="{{ asset('images/socialmedia/Social Icons (1).png') }}" alt="">
+                        <img src="{{ asset('images/socialmedia/Social Icons (2).png') }}" alt="">
+                        <img src="{{ asset('images/socialmedia/Social Icons (3).png') }}" alt="">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="flex-display pading-card right-margin-110px color-white top-margin-40px none-list-style link-none-style">
+                <div>
+                    <h4 class="font-size-18px">
+                        Compañia
+                    </h4>
+
+                    <ul class="top-margin-20px margin-link">
+                        <li><a href="#">Sobre Nosotros</a></li>
+                        <li><a href="#">Contacto</a></li>
+                        <li><a href="#">Politicas de Privacidad</a></li>
+                        <li><a href="#">Terminos de Uso</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-size-18px">
+                        Soporte
+                    </h4>
+
+                    <ul class="top-margin-20px margin-link">
+                        <li><a href="#">Centro de ayuda</a></li>
+                        <li><a href="#">Terminos de servicio</a></li>
+                        <li><a href="#">Legal</a></li>
+                        <li><a href="#">Politicas de privacidad</a></li>
+                        <li><a href="#">Estado</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+    </footer>
 
 </body>
 

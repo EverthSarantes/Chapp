@@ -53,8 +53,12 @@
     color: #000000;
 }
 
-.color-white{
+.color-white {
     color: white;
+}
+
+.color-white a{
+    color: #ffffff;
 }
 
 .text-size-20px{
@@ -183,6 +187,33 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+
+
 .cards-img-with{
     width: 120px;
+}
+
+.none-list-style ul{
+    list-style-type: none;
+}
+.link-none-style a{
+    text-decoration: none;
+}
+
+.margin-link li{
+    margin-top: 10px;
+}
+
+.font-size-18px{
+    font-size: 18px;
+}
+
+.img-size-50px{
+    width: 150px;
+}
+
+.center{
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center;   
 }

@@ -8,15 +8,15 @@ use App\Http\Controllers\Usuario\PerfilController;
 use App\Http\Controllers\Usuario\InfoAcademicaController;
 use App\Http\Controllers\Usuario\InfoLaboralController;
 
-/*Route::get('/', function () {
+Route::get('autentication', function () {
     if(auth()->check())
     {
         return redirect()->route('panel');
     }
 
     return view('login');
-})->name('/');
-*/
+})->name('autentication');
+
 
 Route::get('/', function () {
     return view('landingpage');
