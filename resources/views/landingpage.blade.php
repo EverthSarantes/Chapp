@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Barra de Navegación</title>
     <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/basics.css') }}">
 </head>
 
 <body>
@@ -14,61 +16,57 @@
             <img class="logo" src="{{ asset('images/logo.png') }}" alt="Logo">
             <nav>
                 <ul class="nav-bar">
-                    <li><a href="#">Subscripciones</a></li>
-                    <li><a href="#">Trabajos</a></li>
-                    <li><a href="#">Articulos</a></li>
-                    <li class="color-text"><a href="{{route('login')}}" class="login-button ">Iniciar Sesión</a></li>
+                    <li><a href="#" class="c-blanco">Subscripciones</a></li>
+                    <li><a href="#" class="c-blanco">Trabajos</a></li>
+                    <li><a href="#" class="c-blanco">Articulos</a></li>
+                    <li><a href="{{route('login')}}" class="btn blanco">Iniciar Sesión</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <div class="container" id="container">
-        <div class="display-flex bottom-margin">
-            <div class="left-margin-110px top-margin-40px">
+    <div class="landing-container" id="container">
+        <div id="hero" class="flex flex-center gap-2 p-2">
+            <div>
                 <h1 class="font-size">
                     El Puente Entre Tu <br>
                     <span class="color-lightgreen">Talento</span> y
                     <span class="color-lightblue">Oportunidades</span> <br>
                     Ilimitadas.
                 </h1>
-
-                <h3 class="top-margin-20px">
+                <h3>
                     Da el paso al siguiente nivel y oferta tus habilidades <br> técnicas y profecionales
                 </h3>
-
-                <div class="btn top-margin-10px center color-white link-none-style">
-                    <a href="auth/register">Registrarse</a>
+                <div class="w-50">
+                    <a href="auth/register" class="btn verde non-link">Registrarse</a>
                 </div>
             </div>
-            <div class="float-right right-margin-110px top-margin-70px ">
+            <div>
                 <img class="img-size" src="{{ asset('images/landing.png') }}" alt="Landing">
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="landing-container">
         <div class="background-5792AD">
-            <div>
+            <div class="p-2">
                 <div class="text-center color-white">
                     <div class="text-size-24px">
-                        <h2 class="padding-top-20px">
+                        <h2>
                             Compañias que confian en nosotros
                         </h2>
                     </div>
-                    <p class="text-size-20px pading-top">
+                    <p class="text-size-20px">
                         Las principales compañias usan Chapp para contratar servicos tecnicos y profecionales
                     </p>
                 </div>
-
-
-                <div class="display-flex center-contend">
-                    <div class="image-with pading">
-                        <img class="img-size" src="{{ asset('images/logo_2.png') }}" alt="Landing">
-                        <img class="img-size" src="{{ asset('images/logo_3.png') }}" alt="Landing">
-                        <img class="img-size" src="{{ asset('images/logo_4.png') }}" alt="Landing">
-                        <img class="img-size" src="{{ asset('images/logo_5.png') }}" alt="Landing">
-                        <img class="img-size" src="{{ asset('images/logo_6.png') }}" alt="Landing">
-                        <img class="img-size" src="{{ asset('images/logo_7.png') }}" alt="Landing">
+                <div class="flex flex-center mt-2">
+                    <div class="flex flex-center flex-wrap w-100 gap-3">
+                        <img class="img" src="{{ asset('images/logo_2.png') }}" alt="Landing">
+                        <img class="img" src="{{ asset('images/logo_3.png') }}" alt="Landing">
+                        <img class="img" src="{{ asset('images/logo_4.png') }}" alt="Landing">
+                        <img class="img" src="{{ asset('images/logo_5.png') }}" alt="Landing">
+                        <img class="img" src="{{ asset('images/logo_6.png') }}" alt="Landing">
+                        <img class="img" src="{{ asset('images/logo_7.png') }}" alt="Landing">
                     </div>
                 </div>
             </div>
@@ -76,7 +74,7 @@
 
     </div>
 
-    <div class="container">
+    <div class="landing-container">
         <div class="padding-top-20px text-center">
             <h3 class="text-size-24px">
                 Funcionalidades
@@ -87,7 +85,7 @@
 
         </div>
 
-        <div id="cards" class="flex-display pading-card padding-top-20px center-contend">
+        <div id="cards" class="flex-display flex-wrap pading-card padding-top-20px center-contend">
 
             <div id="card1" class="card">
                 <div class="flex-display center-contend">
@@ -137,35 +135,34 @@
         </div>
     </div>
 
-    <footer class="container">
-        <div class="background-5792AD display-flex">
-            <div class="left-margin-110px">
-                <div class="top-margin-40px">
+    <footer class="landing-container">
+        <div class="background-5792AD flex justify-content-between flex-wrap p-2">
+            <div id="descripcion" class="w-25 flex flex-center flex-column">
+                <div class="">
                     <img class="img-size-50px" src="{{ asset('images/logo.png') }}" alt="Logo">
                 </div>
                 <div class="color-white">
-                    <h6 class="top-margin-20px">
-                        © 2021 Chapp, Inc. <br>
+                    <h6 class="">
+                        © 2024 Chapp, Inc. <br>
                         All rights reserved
                     </h6>
 
-                    <div id="socialmedia" class="top-margin-40px">
+                    <div id="socialmedia" class="">
                         <img src="{{ asset('images/socialmedia/Social Icons.png') }}" alt="">
                         <img src="{{ asset('images/socialmedia/Social Icons (1).png') }}" alt="">
                         <img src="{{ asset('images/socialmedia/Social Icons (2).png') }}" alt="">
                         <img src="{{ asset('images/socialmedia/Social Icons (3).png') }}" alt="">
                     </div>
                 </div>
-
             </div>
 
-            <div class="flex-display pading-card right-margin-110px color-white top-margin-40px none-list-style link-none-style">
-                <div>
+            <div class="flex flex-wrap justify-contente-end color-white none-list-style link-none-style w-75">
+                <div class="w-50">
                     <h4 class="font-size-18px">
                         Compañia
                     </h4>
 
-                    <ul class="top-margin-20px margin-link">
+                    <ul class="">
                         <li><a href="#">Sobre Nosotros</a></li>
                         <li><a href="#">Contacto</a></li>
                         <li><a href="#">Politicas de Privacidad</a></li>
@@ -173,12 +170,12 @@
                     </ul>
                 </div>
 
-                <div>
+                <div class="w-50">
                     <h4 class="font-size-18px">
                         Soporte
                     </h4>
 
-                    <ul class="top-margin-20px margin-link">
+                    <ul class="">
                         <li><a href="#">Centro de ayuda</a></li>
                         <li><a href="#">Terminos de servicio</a></li>
                         <li><a href="#">Legal</a></li>

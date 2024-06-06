@@ -1,16 +1,15 @@
-/* Estilos básicos para la barra de navegación */
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 .nav-container {
     display: flex; /* Usar Flexbox para la disposición */
     align-items: center; /* Alinear verticalmente los elementos */
     justify-content: space-between; /* Espacio entre el logo y las opciones de navegación */
     padding: 10px 10px; /* Relleno opcional */
-    background-color: #5792AD; /* Color de fondo opcional */
+    background-color: var(--verde); /* Color de fondo opcional */
+}
+
+.nav-container nav{
+    width: 80%;
+    display: flex;
+    justify-content: end;
 }
 
 /* Estilos para el logo */
@@ -21,32 +20,32 @@
 
 /* Estilos para la barra de navegación */
 .nav-bar {
+    width: 100%;
     list-style: none; /* Quitar los puntos de las listas */
-    margin: 0; /* Quitar márgenes */
     display: flex; /* Usar Flexbox para los elementos de la lista */
-    margin-right: 30px; /* Espacio de 5rem desde la derecha */
-}
-
-/* Estilos para los elementos de la barra de navegación */
-.nav-bar li {
-    margin-left: 20px; /* Espacio entre los elementos de la lista */
-    padding: 0 0 0 45PX;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 5px
 }
 
 /* Estilos para los enlaces */
 .nav-bar a{
     text-decoration: none; /* Quitar subrayado de los enlaces */
-    color: #ffffff; /* Color del texto del enlace */
     font-size: 16px; /* Tamaño de la fuente */
 }
 
-/* Estilos específicos para el botón de iniciar sesión */
-.login-button {
-    padding: 5px 10px; /* Relleno interno */
-    border-radius: 5px; /* Bordes redondeados */
-    color: #000; /* Color del texto negro */
-    background-color: #fff; /* Fondo blanco */
-    margin-left: 20px; /* Espacio a la izquierda de otros elementos */
+.nav-bar li{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#container{
+    height: calc(70vh);
+}
+
+#hero{
+    height: 100%;
 }
 
 .color-text a{
@@ -65,11 +64,11 @@
     font-size: 18px;
 }
 .text-size-24px{
-    font-size: 24px;
+    font-size: 20px;
 }
 
 
-.container {
+.landing-container {
     width: 100%;
     height: 100%;
 }
@@ -155,24 +154,36 @@
 }
 
 .img-size{
-    width: 480px;
+    width: 100%;
+    max-width: 380px;
+}
+
+.img{
+    width: 100%;
+    max-width: 60px;
 }
 
 .font-size{
-    font-size: 50px;
+    font-size: 40px;
 }
 
-.btn{
-    width: 100px;
-    height: 40px;
-    border-radius: 5px;
-    background-color: #2A2CBC;
-    border: none;
-    color: #ffffff;
-    font-weight: bold;
+@media (max-width: 768px) {
+    .img-size{
+        display: none;
+    }
+
+    .font-size{
+        font-size: 30px;
+    }
+
+    #container div{
+        flex-direction: row-reverse;
+    }
+
+    #descripcion{
+        display: none;
+    }
 }
-
-
 
 .background-5792AD{
     background-color: #5792AD;
@@ -180,11 +191,11 @@
 
 .card{
     width: 250px;
-    height: 320px;
+    height: 330px;
     border-radius: 10px;
     border: 1px solid #262626;
     background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }
 
 
