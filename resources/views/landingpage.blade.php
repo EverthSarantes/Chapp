@@ -63,12 +63,12 @@
 
                 <div class="display-flex center-contend">
                     <div class="image-with pading">
-                        <img class="img-size" src="{{ asset('images/logo (2).png') }}" alt="Landing">
-                        <img class="img-size" src="{{ asset('images/logo (3).png') }}" alt="Landing">
-                        <img class="img-size" src="{{ asset('images/logo (4).png') }}" alt="Landing">
-                        <img class="img-size" src="{{ asset('images/logo (5).png') }}" alt="Landing">
-                        <img class="img-size" src="{{ asset('images/logo (6).png') }}" alt="Landing">
-                        <img class="img-size" src="{{ asset('images/logo (7).png') }}" alt="Landing">
+                        <img class="img-size" src="{{ asset('images/logo_2.png') }}" alt="Landing">
+                        <img class="img-size" src="{{ asset('images/logo_3.png') }}" alt="Landing">
+                        <img class="img-size" src="{{ asset('images/logo_4.png') }}" alt="Landing">
+                        <img class="img-size" src="{{ asset('images/logo_5.png') }}" alt="Landing">
+                        <img class="img-size" src="{{ asset('images/logo_6.png') }}" alt="Landing">
+                        <img class="img-size" src="{{ asset('images/logo_7.png') }}" alt="Landing">
                     </div>
                 </div>
             </div>
