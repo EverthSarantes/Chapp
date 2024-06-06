@@ -17,7 +17,7 @@
                     <li><a href="#">Subscripciones</a></li>
                     <li><a href="#">Trabajos</a></li>
                     <li><a href="#">Articulos</a></li>
-                    <li class="color-text"><a href="autentication" class="login-button ">Iniciar Sesión</a></li>
+                    <li class="color-text"><a href="{{route('login')}}" class="login-button ">Iniciar Sesión</a></li>
                 </ul>
             </nav>
         </div>
