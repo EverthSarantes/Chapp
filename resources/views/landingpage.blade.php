@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barra de Navegación</title>
+    <title>{{env('APP_NAME')}}</title>
     <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/basics.css') }}">
@@ -16,9 +16,9 @@
             <img class="logo" src="{{ asset('images/logo.png') }}" alt="Logo">
             <nav>
                 <ul class="nav-bar">
-                    <li><a href="#" class="c-blanco">Subscripciones</a></li>
-                    <li><a href="#" class="c-blanco">Trabajos</a></li>
-                    <li><a href="#" class="c-blanco">Articulos</a></li>
+                    <li><a href="#" class="c-blanco nav-link">Subscripciones</a></li>
+                    <li><a href="#" class="c-blanco nav-link">Trabajos</a></li>
+                    <li><a href="#" class="c-blanco nav-link">Articulos</a></li>
                     <li><a href="{{route('login')}}" class="btn blanco">Iniciar Sesión</a></li>
                 </ul>
             </nav>

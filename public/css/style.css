@@ -125,6 +125,7 @@ body{
 .btn:hover{
     background-color: var(--gris);
     transform: scale(1.05);
+    color: var(--blanco);
 }
 
 .logo-icon{
@@ -160,6 +161,17 @@ body{
     margin-right: auto;
     margin-left: auto;
 }
+
+#message{
+    position: fixed;
+    top: 30px;
+    right: 10px;
+    z-index: 1000;
+    padding: 10px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
 @media (min-width: 768px) {
     .container {
       width: 750px;

@@ -1,7 +1,7 @@
 <div id="sidebar" class="verde sidebar-inactive p-2">
     <div>
         <div class="flex justify-content-between">
-            <img src="" alt="Logo Chapp">
+            <img src="{{ asset('/images/logo.png') }}" alt="Logo Chapp">
             <button type="button" class="btn-toggle-sidebar amarillo">X</button>
         </div>
         <hr class="mt-2 mb-2 c-negro">
@@ -13,7 +13,6 @@
     </div>
     <div class="flex flex-column">
         <hr class="mt-2 mb-2 c-negro">
-        <img src="" alt="Imagen de perfil del usuario">
         <a href="{{route('auth.logout')}}" class="non-link">
             Cerrar Sesión
         </a>

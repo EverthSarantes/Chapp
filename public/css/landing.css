@@ -183,6 +183,10 @@
     #descripcion{
         display: none;
     }
+
+    .nav-link{
+        display: none;
+    }
 }
 
 .background-5792AD{
