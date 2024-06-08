@@ -7,7 +7,7 @@
 @section('content')
     <main class="flex flex-center flex-column">
         <div class="logo-container">
-            <img src="/img/logofooter 1.png" alt="logo chapp">
+            <img src="{{ asset('/images/logo.png') }}" alt="logo chapp">
             <h2 class="logo-text">Iniciar Sesión</h2>
         </div>
         <form action="{{route('auth.login')}}" method="post" class="form login-form">

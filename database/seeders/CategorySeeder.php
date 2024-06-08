@@ -13,8 +13,25 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        Categoria::factory()
-        ->has(Subcategoria::factory()->count(2))
-        ->count(20)->create();
+        $cat = Categoria::all();
+        $cat->each->delete();
+
+        $categories = [
+            'Programación',
+            'Diseño Gráfico',
+            'Marketing',
+            'Idiomas',
+            'Negocios',
+            'Electricidad',
+            'Construcción',
+            'Marketing',
+            'Educación',
+            'Comercio',
+            'Finanzas',
+        ];
+
+        foreach ($categories as $category) {
+            $category = Categoria::create(['nombre' => $category]);
+        }
     }
 }

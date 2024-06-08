@@ -53,10 +53,16 @@ class AuthController extends Controller
             $infoLaboral->save();
 
             DB::commit();
-            return redirect()->back()->with([
-                'message' => 'Usuario registrado correctamente',
-                'type' => 'verde'
-            ]);
+            
+            if(Auth::attempt(['name' => $request->name, 'password' => $request->password]))
+            {
+                $request->session()->regenerate();
+                
+                return redirect()->route('profile.index')->with([
+                    'message' => 'Usuario registrado correctamente',
+                    'type' => 'verde'
+                ]);
+            }
         }
         catch(\Exception $e)
         {

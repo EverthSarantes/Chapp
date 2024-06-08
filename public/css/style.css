@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap');
 
 :root{
-    --verde: #068443;
+    --verde: #5792AD;
     --gris: #37465D;
     --amarillo: #f7b440;
     --rojo: #F04848;
@@ -41,6 +41,11 @@ body{
     color: var(--blanco);
 }
 
+.blanco{
+    background-color: var(--blanco);
+    color: var(--negro);
+}
+
 /*colores solo texto*/
 .c-verde{
     color: var(--verde);
@@ -56,6 +61,10 @@ body{
 
 .c-rojo{
     color: var(--rojo);
+}
+
+.c-blanco{
+    color: var(--blanco);
 }
 
 /*estilos de layout*/
@@ -116,6 +125,7 @@ body{
 .btn:hover{
     background-color: var(--gris);
     transform: scale(1.05);
+    color: var(--blanco);
 }
 
 .logo-icon{
@@ -151,6 +161,17 @@ body{
     margin-right: auto;
     margin-left: auto;
 }
+
+#message{
+    position: fixed;
+    top: 30px;
+    right: 10px;
+    z-index: 1000;
+    padding: 10px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
 @media (min-width: 768px) {
     .container {
       width: 750px;
