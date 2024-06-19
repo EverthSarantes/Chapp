@@ -31,3 +31,12 @@
           </div>
     </div>
 @endsection
+
+@section('scripts')
+
+    <script>
+        const top_categorias = @json($dataTop5);
+        const suma_por_sexo = @json($suma_total);
+    </script>
+
+@endsection

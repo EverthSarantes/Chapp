@@ -17,4 +17,24 @@ class Categoria extends Model
     {
         return $this->hasMany(Subcategoria::class);
     }
+
+    public function habilidades()
+    {
+        return $this->hasMany(Habilidad::class);
+    }
+
+    public function profesiones()
+    {
+        return $this->hasMany(Profesion::class);
+    }
+
+    public function proyectos()
+    {
+        return $this->hasMany(Proyecto::class);
+    }
+
+    public function trabajos()
+    {
+        return $this->hasMany(Trabajo::class);
+    }
 }

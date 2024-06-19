@@ -27,4 +27,9 @@ class Trabajo extends Model
     {
         return $this->belongsTo(Categoria::class);
     }
+
+    public function infoLaboral()
+    {
+        return $this->belongsTo(InfoLaboral::class);
+    }
 }
