@@ -8,6 +8,7 @@
         <nav>
             <ul class="flex flex-column list-none gap-1">
                 <li><a class="non-link" href="{{route('profile.index')}}">Perfil</a></li>
+                <li><a class="non-link" href="{{route('estadisticas.index')}}">Estadísticas</a></li>
             </ul>
         </nav>
     </div>

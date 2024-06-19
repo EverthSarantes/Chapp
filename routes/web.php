@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Estadistica\TablesController;
 use App\Http\Controllers\Estadistica\SearchController;
+use App\Http\Controllers\Estadistica\EstadisticasController;
+
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Usuario\PerfilController;
 use App\Http\Controllers\Usuario\InfoAcademicaController;
@@ -24,6 +26,10 @@ Route::get('/', function () {
 Route::get('estadisticas', function () {
     return view('estadisticas');
 })->name('estadisticas');
+
+Route::prefix('estadisticas')->group(function(){
+    Route::get('index', [EstadisticasController::class, 'index'])->name('estadisticas.index');
+});
 
 Route::prefix('tables')->group(function(){
     Route::get('names', [TablesController::class, 'getNames'])->name('tables.names');
