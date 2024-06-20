@@ -84,7 +84,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     position: 'top',
                     display: true,
                     labels: {
-                        // Definir las etiquetas manualmente
                         generateLabels: function(chart) {
                             return [
                                 { text: 'Hombres', fillStyle: 'rgba(54, 162, 235, 0.2)', strokeStyle: 'rgba(54, 162, 235, 1)', lineWidth: 1 },
@@ -101,42 +100,49 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    const labels_salario = Object.keys(promedio_salario);
+    const salarios_m = [promedio_salario['18-25']['M'], promedio_salario['26-35']['M'], promedio_salario['36-45']['M'], promedio_salario['46+']['M']];
+    const salarios_f = [promedio_salario['18-25']['F'], promedio_salario['26-35']['F'], promedio_salario['36-45']['F'], promedio_salario['46+']['F']];
+
     new Chart(canva3, {
-        type: 'pie',
+        type: 'line',
         data: {
-            labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'],
+            labels: labels_salario,
             datasets: [{
-                labels: 'Ventas',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)',
-                ],
-                borderWidth: 1,
+                labels: 'Hombres',
+                data: salarios_m,
+                backgroundColor: ['rgba(54, 162, 235)'],
+                borderColor: 'rgba(54, 162, 235)',
+                borderWidth: 5,
                 borderRadius: 5
-            }]
+            },
+            {
+                labels: 'Mujeres',
+                data: salarios_f,
+                backgroundColor: ['rgba(255, 99, 132)'],
+                borderColor: 'rgba(255, 99, 132)',
+                borderWidth: 5,
+                borderRadius: 5
+            }
+        ]
         },
         options: {
             responsive: true,
             plugins: {
                 legend: {
                     position: 'top',
+                    labels: {
+                        generateLabels: function(chart) {
+                            return [
+                                { text: 'Hombres', fillStyle: 'rgba(54, 162, 235, 0.2)', strokeStyle: 'rgba(54, 162, 235, 1)', lineWidth: 1 },
+                                { text: 'Mujeres', fillStyle: 'rgba(255, 99, 132, 0.2)', strokeStyle: 'rgba(255, 99, 132, 1)', lineWidth: 1 }
+                            ];
+                        }
+                    }
                 },
                 title: {
                     display: true,
-                    text: 'Chart.js Pie Chart'
+                    text: 'Expectativa salarial promedio por Edad y Sexo'
                 }
             },
         }

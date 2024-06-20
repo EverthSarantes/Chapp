@@ -37,6 +37,7 @@
     <script>
         const top_categorias = @json($dataTop5);
         const suma_por_sexo = @json($suma_total);
+        const promedio_salario = @json($promedio_salario);
     </script>
 
 @endsection
