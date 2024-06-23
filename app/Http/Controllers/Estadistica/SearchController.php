@@ -21,9 +21,10 @@ class SearchController extends Controller
 
         if($request->conditions == 1)
         {
-            foreach ($request->condition_column as $key => $column) {
-                $query->where($column, $request->condition_operator[$key], $request->condition_value[$key]);
-            }
+            // foreach ($request->condition_column as $key => $column) {
+            //     $query->where($column, $request->condition_operator[$key], $request->condition_value[$key]);
+            // }
+            $query->where($request->condition_column, $request->condition_operator, $request->condition_value);
         }
 
         if($request->order == 'ASC')
@@ -38,7 +39,14 @@ class SearchController extends Controller
         $columns = $request->except('_token', 'table', 'fiels_amount', 'order', 'order_column', 'conditions', 'condition_column', 'condition_operator', 'condition_value', 'operation', 'operation_column', 'relationships', 'relationship_table[]');
         if(count($columns) > 0)
         {
-            $query->select(array_values($columns));
+            $c = [];
+            foreach($columns as $col => $value)
+            {
+                $columns[$col] = $col;
+                $c[] = explode('|', $col)[1];
+            }
+            
+            $query->select(array_values($c));
         }
         else
         {

@@ -87,18 +87,18 @@
             </div>
             <div class="d-none flex-column" id="conditions-container">
                 <div class="d-flex align-items-center justify-content-between">
-                    <h5>Condiciones</h5><button type="button" class="btn btn-primary" id="add-condition-button">Añadir Condición</button>
+                    <h5>Condiciones</h5><button type="button" class="btn btn-primary d-none" id="add-condition-button">Añadir Condición</button>
                 </div>
                 <div class="row" id="conditions-container-1">
                     <div class="col-md-6 mb-3">
                         <label for="condition-column-selector" class="form-label">Campo</label>
-                        <select class="form-select condition-column-selectors" id="condition-column-selector" name="condition_column[]" autocomplete="off">
+                        <select class="form-select condition-column-selectors" id="condition-column-selector" name="condition_column" autocomplete="off">
                             <option value="">Seleccione una columna</option>
                         </select>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="condition-operator-selector" class="form-label">Operador</label>
-                        <select class="form-select" id="condition-operator-selector" name="condition_operator[]">
+                        <select class="form-select" id="condition-operator-selector" name="condition_operator">
                             <option value="">Seleccione un operador</option>
                             <option value="=">Igual</option>
                             <option value="!=">Diferente</option>
@@ -118,7 +118,7 @@
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="condition-value" class="form-label">Valor</label>
-                        <input type="text" class="form-control" id="condition-value" name="condition_value[]">
+                        <input type="text" class="form-control" id="condition-value" name="condition_value">
                     </div>
                 </div>
             </div>

@@ -1,5 +1,6 @@
 const local_api_url = 'http://127.0.0.1:8000/api/';
 const external_api_url = 'http://127.0.0.1:8000/api/';
+const api_url = 'http://127.0.0.1:8000/';
 
 function makeRequest(url, method, callback, error, form_id = null) {
     var xhr = new XMLHttpRequest();

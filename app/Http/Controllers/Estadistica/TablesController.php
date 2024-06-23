@@ -27,7 +27,7 @@ class TablesController extends Controller
 
     public function getFields($table)
     {
-        $fields = (new Tables())->getTableFields($table);
+        $fields = (new Tables())->getTableFieldsExcept($table);
         
         if(count($fields) == 0) {
             return response()->json([

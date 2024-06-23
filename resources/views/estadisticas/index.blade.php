@@ -8,6 +8,13 @@
 @endsection
 @section('content')
     <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-6 justify-content-center d-flex">
+                    <a href="{{route('estadisticas')}}" class="btn btn-success text-center">
+                        Estadisticas Avanzadas
+                    </a>
+                </div>
+            </div>
         <div id="carrousel_graficos" class="carousel slide carousel-fade carousel-dark">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
